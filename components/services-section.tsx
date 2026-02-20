@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Globe, Bot, Database, Smartphone, Server, Workflow } from "lucide-react"
-import { staggerContainer, staggerItem, hoverLift, iconRotate } from "@/lib/animations"
+import { staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 
 const services = [
   {
@@ -60,7 +60,7 @@ export function ServicesSection() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={viewportOnce}
           variants={staggerContainer}
         >
           {services.map((service, index) => {
@@ -89,7 +89,7 @@ export function ServicesSection() {
                       className="flex items-center text-sm text-muted-foreground"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={viewportOnce}
                       transition={{ delay: idx * 0.1 }}
                     >
                       <motion.span

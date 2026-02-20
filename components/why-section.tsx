@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { TrendingUp, Clock, Cog, Shield } from "lucide-react"
-import { staggerContainer, staggerItem, hoverLift } from "@/lib/animations"
+import { staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 
 const reasons = [
   {
@@ -44,7 +44,7 @@ export function WhySection() {
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={viewportOnce}
           variants={staggerContainer}
         >
           {reasons.map((reason, index) => (

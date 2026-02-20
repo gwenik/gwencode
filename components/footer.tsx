@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Terminal, Github, MessageCircle, Mail } from "lucide-react"
-import { fadeInUp, iconRotate, hoverScale } from "@/lib/animations"
+import { fadeInUp, viewportOnce } from "@/lib/animations"
 
 export function Footer() {
   return (
@@ -10,7 +10,7 @@ export function Footer() {
       className="bg-card border-t border-border py-12"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={viewportOnce}
       variants={fadeInUp}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

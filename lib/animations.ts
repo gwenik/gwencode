@@ -1,5 +1,8 @@
 import { Variants } from "framer-motion"
 
+// Стабильный viewport для whileInView: уменьшает мерцание при скролле
+export const viewportOnce = { once: true, amount: 0.2, margin: "50px" } as const
+
 // Check for reduced motion preference
 export const prefersReducedMotion = () => {
   if (typeof window === "undefined") return false

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MessageCircle, Send, CheckCircle2 } from "lucide-react"
-import { fadeInLeft, fadeInRight, formSuccess, hoverLift, iconRotate } from "@/lib/animations"
+import { fadeInLeft, fadeInRight, formSuccess, viewportOnce } from "@/lib/animations"
 
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -21,7 +21,7 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const URL = `https://api.telegram.org/bot8595355411:AAGPgqFFVjVrXCzFoeBKoqiVKJ6UkBwBra4/sendMessage`
+    const telegramSendMessageUrl = process.env.NEXT_PUBLIC_BOT_TOKEN ?? ''
     const user_message = `
     Новое обращение с сайта:
 
@@ -29,13 +29,13 @@ export function ContactSection() {
     Почта для связи: ${formData.email},
     Сообщение пользователя: ${formData.message}
     `
-    fetch(URL, {
+    fetch(telegramSendMessageUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        chat_id: 5947914554,
+        chat_id: process.env.NEXT_PUBLIC_CHAT_ID,
         text: user_message
       })
     })
@@ -57,7 +57,7 @@ export function ContactSection() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             variants={fadeInLeft}
           >
             <motion.h2
@@ -137,7 +137,7 @@ export function ContactSection() {
             className="bg-card rounded-2xl border border-border p-8"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             variants={fadeInRight}
           >
             <motion.h3
@@ -184,7 +184,7 @@ export function ContactSection() {
                     variants={fadeInRight}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={viewportOnce}
                   >
                     <label className="block text-sm font-medium text-foreground mb-2">Ваше имя</label>
                     <Input
@@ -201,7 +201,7 @@ export function ContactSection() {
                     variants={fadeInRight}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={viewportOnce}
                   >
                     <label className="block text-sm font-medium text-foreground mb-2">Email или Telegram</label>
                     <Input
@@ -218,7 +218,7 @@ export function ContactSection() {
                     variants={fadeInRight}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={viewportOnce}
                   >
                     <label className="block text-sm font-medium text-foreground mb-2">Опишите ваш проект</label>
                     <Textarea
@@ -235,7 +235,7 @@ export function ContactSection() {
                     variants={fadeInRight}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={viewportOnce}
                   >
                     <motion.button
                       type="submit"
