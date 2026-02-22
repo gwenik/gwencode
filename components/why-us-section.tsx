@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { CheckCircle2, Users, Headphones, Rocket, Award, RefreshCw } from "lucide-react"
-import { fadeInLeft, fadeInRight, staggerContainer, staggerItem, hoverLift, iconRotate } from "@/lib/animations"
+import { fadeInLeft, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 
 const advantages = [
   {
@@ -45,7 +45,7 @@ export function WhyUsSection() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             variants={fadeInLeft}
           >
             <motion.h2
@@ -109,7 +109,7 @@ export function WhyUsSection() {
             className="grid sm:grid-cols-2 gap-4"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             variants={staggerContainer}
           >
             {advantages.map((advantage, index) => (

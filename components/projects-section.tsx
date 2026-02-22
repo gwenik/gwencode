@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Calendar, Clock, DollarSign, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { slideIn } from "@/lib/animations"
+import { slideIn, viewportOnce } from "@/lib/animations"
 
 interface Project {
   name: string
@@ -280,7 +280,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
                 className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full border border-border"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={viewportOnce}
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ scale: 1.1, borderColor: "oklch(0.65 0.18 145 / 0.5)" }}
               >

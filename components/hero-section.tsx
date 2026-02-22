@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code2, Zap, Bot } from "lucide-react"
-import { fadeInUp, fadeInLeft, fadeInRight, scaleIn, staggerContainer, staggerItem, parallax, countUp } from "@/lib/animations"
+import { fadeInUp, fadeInLeft, fadeInRight, scaleIn, staggerContainer, staggerItem, parallax, countUp, viewportOnce } from "@/lib/animations"
 
 const codeLines = [
   "from fastapi import FastAPI",
@@ -188,7 +188,7 @@ export function HeroSection() {
             className="text-center lg:text-left"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             variants={staggerContainer}
           >
             <motion.div
@@ -252,7 +252,7 @@ export function HeroSection() {
                 className="text-center"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={viewportOnce}
                 variants={countUp}
               >
                 <p className="text-3xl font-bold text-foreground">{projectsCount.count}+</p>
@@ -264,7 +264,7 @@ export function HeroSection() {
                 className="text-center"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={viewportOnce}
                 variants={countUp}
               >
                 <p className="text-3xl font-bold text-foreground">{yearsCount.count}+</p>
@@ -276,7 +276,7 @@ export function HeroSection() {
                 className="text-center"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={viewportOnce}
                 variants={countUp}
               >
                 <p className="text-3xl font-bold text-foreground">{resultCount.count}%</p>
@@ -290,7 +290,7 @@ export function HeroSection() {
             className="relative hidden lg:block"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             variants={fadeInRight}
           >
             <div className="relative">
