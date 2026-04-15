@@ -44,11 +44,12 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <a href="#" onClick={scrollToTop} className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-110">
+            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-110">
               <Terminal className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-foreground">
-              GCompany<span className="gradient-text">IT</span>
+            <span className="text-xl font-bold">
+              <span className="text-foreground">gwen</span>
+              <span className="text-primary">code</span>
             </span>
           </a>
 

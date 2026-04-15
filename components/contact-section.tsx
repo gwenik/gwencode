@@ -14,9 +14,13 @@ export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     message: "",
   })
+
+  const contactCard = {
+    rest: { y: 0 },
+    hover: { y: -8 },
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -26,7 +30,6 @@ export function ContactSection() {
     Новое обращение с сайта:
 
     Имя: ${formData.name},
-    Почта для связи: ${formData.email},
     Сообщение пользователя: ${formData.message}
     `
     fetch(telegramSendMessageUrl, {
@@ -46,7 +49,7 @@ export function ContactSection() {
     setIsSubmitted(true)
     setTimeout(() => {
       setIsSubmitted(false)
-      setFormData({ name: "", email: "", message: "" })
+      setFormData({ name: "", message: "" })
     }, 3000)
   }
 
@@ -72,13 +75,13 @@ export function ContactSection() {
             >
               Наши <span className="gradient-text">контакты</span>
             </motion.h2>
-            <motion.p
-              variants={fadeInLeft}
-              className="text-lg text-muted-foreground mb-8 leading-relaxed"
-            >
-              Готовы обсудить ваш проект? Свяжитесь с нами любым удобным способом — мы ответим в течение часа в рабочее
-              время.
-            </motion.p>
+
+            <div className="mb-8 p-4 bg-primary/5 rounded-xl border border-primary/20">
+              <p className="text-sm text-foreground">
+                <span className="font-semibold">💡 Совет:</span> Опишите вашу задачу максимально подробно — это поможет нам
+                быстрее оценить проект и предложить оптимальное решение.
+              </p>
+            </div>
 
             <motion.div
               className="space-y-6"
@@ -88,9 +91,12 @@ export function ContactSection() {
                 href="https://t.me/gwencode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border transition-all group"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border transition-colors group"
+                variants={contactCard}
+                initial="rest"
+                animate="rest"
+                whileHover="hover"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
               >
                 <motion.div
                   className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors"
@@ -106,7 +112,7 @@ export function ContactSection() {
               </motion.a>
 
               {/* <motion.a
-                href="mailto:hello@gcompanyit.dev"
+                href="mailto:hello@gwencode.dev"
                 className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border transition-all group"
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3 }}
@@ -120,17 +126,11 @@ export function ContactSection() {
                 </motion.div>
                 <div>
                   <p className="font-semibold text-foreground">Email</p>
-                  <p className="text-sm text-muted-foreground">hello@gcompanyit.dev</p>
+                  <p className="text-sm text-muted-foreground">hello@gwencode.dev</p>
                 </div>
               </motion.a> */}
             </motion.div>
 
-            <div className="mt-8 p-4 bg-primary/5 rounded-xl border border-primary/20">
-              <p className="text-sm text-foreground">
-                <span className="font-semibold">💡 Совет:</span> Опишите вашу задачу максимально подробно — это поможет
-                нам быстрее оценить проект и предложить оптимальное решение.
-              </p>
-            </div>
           </motion.div>
 
           <motion.div
@@ -203,15 +203,6 @@ export function ContactSection() {
                     whileInView="visible"
                     viewport={viewportOnce}
                   >
-                    <label className="block text-sm font-medium text-foreground mb-2">Email или Telegram</label>
-                    <Input
-                      type="text"
-                      placeholder="Как с вами связаться?"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      className="bg-background border-border focus:border-primary"
-                    />
                   </motion.div>
 
                   <motion.div

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Terminal, Github, MessageCircle, Mail } from "lucide-react"
+import { Github, MessageCircle, Mail, Terminal } from "lucide-react"
 import { fadeInUp, viewportOnce } from "@/lib/animations"
 
 export function Footer() {
@@ -22,14 +22,15 @@ export function Footer() {
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center"
+              className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.5 }}
             >
               <Terminal className="w-5 h-5 text-primary-foreground" />
             </motion.div>
-            <span className="text-xl font-bold text-foreground">
-              GCompany<span className="gradient-text">IT</span>
+            <span className="text-xl font-bold">
+              <span className="text-foreground">gwen</span>
+              <span className="text-primary">code</span>
             </span>
           </motion.div>
 
@@ -58,7 +59,7 @@ export function Footer() {
               <MessageCircle className="w-5 h-5 text-foreground" />
             </motion.a>
             <motion.a
-              href="mailto:g-companyit@mail.ru"
+              href="mailto:hello@gwencode.dev"
               className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors"
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.5 }}
@@ -71,7 +72,7 @@ export function Footer() {
             variants={fadeInUp}
             className="text-sm text-muted-foreground"
           >
-            © 2025 GCompanyIT. Все права защищены.
+            © 2025 gwencode. Все права защищены.
           </motion.p>
         </div>
       </div>

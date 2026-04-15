@@ -8,7 +8,7 @@ const _inter = Inter({ subsets: ["latin", "cyrillic"] })
 const _jetbrains = JetBrains_Mono({ subsets: ["latin", "cyrillic"] })
 
 export const metadata: Metadata = {
-  title: "GCompanyIT",
+  title: "gwencode",
   description:
     "Профессиональная команда разработчиков Python и JavaScript. Разработка ПО, автоматизация бизнеса, Telegram боты, веб-приложения.",
   keywords: ["разработка", "Python", "JavaScript", "автоматизация", "Telegram боты", "веб-приложения"],

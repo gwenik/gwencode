@@ -31,12 +31,13 @@ export function WhySection() {
   return (
     <section id="why" className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-12">
           <h2 className="inline-block px-6 py-2.5 rounded-full bg-accent/30 text-accent-foreground text-lg font-bold mb-6 border-2 border-accent/50">
             Зачем это вам?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Автоматизация и качественное ПО — это инвестиция в будущее вашего бизнеса
+            Вы задаете неправильный вопрос, ответ на который уже знаете. Вы ведь не хотите отставать от других бизнесов,
+            а обогнать их, верно?
           </p>
         </div>
 

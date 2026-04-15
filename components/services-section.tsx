@@ -1,45 +1,52 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Globe, Bot, Database, Smartphone, Server, Workflow } from "lucide-react"
+import { Globe, Bot, Database, Smartphone, Server, Workflow, DollarSign } from "lucide-react"
 import { staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 
 const services = [
   {
     icon: Globe,
-    title: "Веб-приложения",
-    description: "Современные SPA и full-stack приложения на React, Next.js, FastAPI и Django",
-    features: ["REST API", "Адаптивный дизайн", "Высокая производительность"],
+    title: "Сайт или страничка",
+    description: "Сделаем понятный сайт: визитку, лендинг или многостраничный — под вашу задачу.",
+    features: ["Адаптивно под телефон", "Быстрая загрузка", "Удобная админка (если нужно)"],
   },
   {
-    icon: Bot,
-    title: "Telegram боты",
-    description: "Умные боты для бизнеса: от простых уведомлений до сложных CRM систем",
-    features: ["Aiogram 3.x", "Inline режим", "Платёжные системы"],
-  },
-  {
-    icon: Database,
-    title: "Базы данных",
-    description: "Проектирование, оптимизация и миграция баз данных любой сложности",
-    features: ["PostgreSQL", "SQLAlchemy", "Alembic миграции"],
-  },
-  {
-    icon: Workflow,
-    title: "Автоматизация",
-    description: "Автоматизация бизнес-процессов, парсинг данных и интеграция сервисов",
-    features: ["Web scraping", "API интеграции", "Scheduler"],
-  },
-  {
-    icon: Server,
-    title: "Backend разработка",
-    description: "Надёжные серверные решения с микросервисной архитектурой",
-    features: ["FastAPI", "Django", "Docker"],
+    icon: DollarSign,
+    title: "Интернет-магазин",
+    description: "Каталог, корзина, оформление заказа, оплата и доставка — всё как у больших магазинов.",
+    features: ["Каталог и фильтры", "Корзина и заказы", "Оплата/доставка (по необходимости)"],
   },
   {
     icon: Smartphone,
-    title: "Кроссплатформенные решения",
-    description: "Единая кодовая база для web и мобильных устройств",
-    features: ["PWA", "React Native", "Responsive"],
+    title: "Приложение / личный кабинет",
+    description: "Сервисы для клиентов и сотрудников: заявки, статусы, документы, уведомления.",
+    features: ["Личный кабинет", "Роли и доступы", "Интеграции с сервисами"],
+  },
+  {
+    icon: Workflow,
+    title: "Автоматизация бизнеса",
+    description: "Уберём ручную рутину: отчёты, выгрузки, уведомления, синхронизации между сервисами.",
+    features: ["Экономит время", "Меньше ошибок", "Работает по расписанию"],
+  },
+  {
+    icon: Server,
+    title: "IT-решения для бизнеса",
+    description: "Сделаем систему под процессы вашей компании: от простой панели до сложного сервиса.",
+    features: ["Под ваши процессы", "Масштабируемо", "Безопасно"],
+  },
+  {
+    icon: Bot,
+    title: "Telegram и WhatsApp-боты",
+    description: "Боты для продаж и поддержки: заявки, ответы, напоминания, записи, рассылки.",
+    features: ["Сценарии и меню", "Интеграция с CRM/таблицами", "Уведомления и рассылки"],
+  },
+  {
+    icon: Database,
+    title: "Программы для расчётов",
+    description: "Калькуляторы рассрочки, стоимости продукции и других расчётов — под ваши правила.",
+    features: ["Точные формулы", "Понятный интерфейс", "Экспорт в Excel/PDF (если нужно)"],
+    cardClassName: "lg:col-start-2",
   },
 ]
 
@@ -47,13 +54,10 @@ export function ServicesSection() {
   return (
     <section id="services" className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-12">
           <h2 className="inline-block px-6 py-2.5 rounded-full bg-accent/30 text-accent-foreground text-lg font-bold mb-6 border-2 border-accent/50">
             Что мы можем предложить?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Полный цикл разработки: от идеи до production-ready решения
-          </p>
         </div>
 
         <motion.div
@@ -69,7 +73,7 @@ export function ServicesSection() {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="group bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/50 transition-all duration-300"
+                className={`group bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/50 transition-all duration-300 ${service.cardClassName ?? ""}`}
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3 }}
               >

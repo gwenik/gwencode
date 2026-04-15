@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Wrench } from "lucide-react"
 import { staggerContainer, staggerItem, scaleIn, hoverLift } from "@/lib/animations"
@@ -86,6 +86,11 @@ const categories = [
     ),
   },
   {
+    id: "tools" as TechCategory,
+    label: "Инструменты",
+    icon: <Wrench className="w-6 h-6 sm:w-7 sm:h-7" />,
+  },
+  {
     id: "javascript" as TechCategory,
     label: "JavaScript",
     icon: (
@@ -98,57 +103,60 @@ const categories = [
       </svg>
     ),
   },
-  {
-    id: "tools" as TechCategory,
-    label: "Инструменты",
-    icon: <Wrench className="w-6 h-6 sm:w-7 sm:h-7" />,
-  },
 ]
 
 export function TechStackSection() {
   const [activeCategory, setActiveCategory] = useState<TechCategory>("python")
+  const reduceMotion = useReducedMotion()
 
   return (
     <section id="stack" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="inline-block px-6 py-2.5 rounded-full bg-accent/30 text-accent-foreground text-lg font-bold mb-6 border-2 border-accent/50">
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="inline-block px-6 py-2.5 rounded-full bg-accent/30 text-accent-foreground text-lg font-bold mb-5 border-2 border-accent/50">
             Наш стек технологий
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Используем современные и проверенные инструменты для создания надёжных решений
-          </p>
         </div>
 
-        <div className="flex justify-center mb-12 scroll-mt-24">
-          <div className="flex gap-3 p-2 bg-secondary rounded-2xl border border-border overflow-x-auto w-full max-w-fit mx-auto">
+        <div className="flex justify-center mb-10 scroll-mt-24">
+          <div className="flex flex-wrap justify-center gap-2 p-2 bg-secondary/60 rounded-2xl border border-border w-full max-w-fit mx-auto shadow-sm">
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={cn(
-                  "flex items-center justify-center p-4 rounded-xl transition-all flex-shrink-0",
+                  "relative flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 rounded-xl transition-colors flex-shrink-0 select-none",
                   activeCategory === category.id
-                    ? "bg-primary text-primary-foreground shadow-lg"
+                    ? "bg-background text-foreground border border-border shadow-md ring-2 ring-primary/35"
                     : "text-muted-foreground hover:text-foreground hover:bg-background/50",
                 )}
                 aria-label={category.label}
                 title={category.label}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  scale: activeCategory === category.id ? 1.1 : 1,
-                }}
-                transition={{ duration: 0.3 }}
+                whileHover={reduceMotion ? undefined : { y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 500, damping: 35 }}
               >
                 <motion.div
+                  className={cn(
+                    "relative z-10",
+                    activeCategory === category.id ? "text-primary" : "text-muted-foreground",
+                  )}
                   animate={{
-                    rotate: activeCategory === category.id ? [0, 10, -10, 0] : 0,
+                    rotate: reduceMotion || activeCategory !== category.id ? 0 : [0, 6, -6, 0],
                   }}
-                  transition={{ duration: 0.5 }}
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.45 }}
                 >
                   {category.icon}
                 </motion.div>
+
+                <span
+                  className={cn(
+                    "relative z-10 text-sm font-semibold hidden sm:inline",
+                    activeCategory === category.id && "text-foreground",
+                  )}
+                >
+                  {category.label}
+                </span>
               </motion.button>
             ))}
           </div>
