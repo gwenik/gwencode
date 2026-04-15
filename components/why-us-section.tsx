@@ -116,17 +116,11 @@ export function WhyUsSection() {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="group flex items-start gap-4 p-4 bg-card rounded-xl border border-border transition-all"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                className="group flex items-start gap-4 p-4 bg-card rounded-xl border border-border card-hover-lift hover:border-primary/40"
               >
-                <motion.div
-                  className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <advantage.icon className="w-5 h-5 text-primary" />
-                </motion.div>
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
+                  <advantage.icon className="icon-hover-pop w-5 h-5 text-primary" />
+                </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">{advantage.title}</h3>
                   <p className="text-sm text-muted-foreground">{advantage.description}</p>

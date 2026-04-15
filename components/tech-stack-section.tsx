@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Wrench } from "lucide-react"
-import { staggerContainer, staggerItem, scaleIn, hoverLift } from "@/lib/animations"
+import { staggerContainer, staggerItem } from "@/lib/animations"
 
 type TechCategory = "python" | "javascript" | "tools"
 
@@ -175,10 +175,7 @@ export function TechStackSection() {
               <motion.div
                 key={tech.name}
                 variants={staggerItem}
-                className="group relative bg-card rounded-xl border border-border p-4 transition-all duration-300"
-                whileHover="hover"
-                initial="rest"
-                variants={hoverLift}
+                className="group relative bg-card rounded-xl border border-border p-4 card-hover-lift hover:border-primary/40"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <motion.div

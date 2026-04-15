@@ -210,22 +210,18 @@ export function ProjectsSection() {
 
 function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   return (
-    <motion.div
+    <div
       className={cn(
-        "group relative bg-card rounded-2xl overflow-hidden border border-border transition-all duration-300 h-full flex flex-col",
+        "group relative bg-card rounded-2xl overflow-hidden border border-border h-full flex flex-col card-hover-lift",
         featured && "shadow-lg",
       )}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
     >
       {/* Background image */}
       <div className="relative h-40 sm:h-48 overflow-hidden">
-        <motion.img
+        <img
           src={project.image || "/placeholder.svg"}
           alt={project.name}
-          className="w-full h-full object-cover"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.5 }}
+          className="card-media-zoom h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-transparent" />
       </div>
@@ -268,24 +264,17 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
 
         {/* Navigation button */}
         <div className="mt-6 pt-2 mt-auto">
-          <motion.a
+          <a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors group/btn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="group/btn w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-[transform,background-color] duration-[260ms] ease-out active:scale-[0.99]"
           >
             Открыть
-            <motion.span
-              animate={{ x: [0, 4, 0], y: [0, -2, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <ExternalLink className="w-4 h-4" />
-            </motion.span>
-          </motion.a>
+            <ExternalLink className="w-4 h-4 transition-transform duration-300 ease-out group-hover/btn:translate-x-0.5" />
+          </a>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }

@@ -52,24 +52,14 @@ export function WhySection() {
             <motion.div
               key={index}
               variants={staggerItem}
-              className="group relative bg-card rounded-2xl border border-border p-6 hover:border-primary/50 transition-all duration-300"
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
+              className="group relative bg-card rounded-2xl border border-border p-6 card-hover-lift hover:border-primary/50"
             >
-              <motion.div
-                className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <reason.icon className="w-7 h-7 text-primary" />
-              </motion.div>
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                <reason.icon className="icon-hover-pop w-7 h-7 text-primary" />
+              </div>
               <h3 className="text-lg font-semibold text-foreground mb-2">{reason.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{reason.description}</p>
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-1 bg-primary/0 rounded-b-2xl"
-                whileHover={{ backgroundColor: "oklch(0.65 0.18 145 / 0.5)" }}
-                transition={{ duration: 0.3 }}
-              />
+              <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-primary/0 transition-colors duration-300 group-hover:bg-primary/40" />
             </motion.div>
           ))}
         </motion.div>

@@ -73,17 +73,11 @@ export function ServicesSection() {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className={`group bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/50 transition-all duration-300 ${service.cardClassName ?? ""}`}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                className={`group bg-card border border-border rounded-2xl p-6 lg:p-8 card-hover-lift hover:border-primary/50 ${service.cardClassName ?? ""}`}
               >
-                <motion.div
-                  className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Icon className="w-7 h-7 text-primary" />
-                </motion.div>
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
+                  <Icon className="icon-hover-pop w-7 h-7 text-primary" />
+                </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
                 <ul className="space-y-2">
