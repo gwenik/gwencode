@@ -175,7 +175,7 @@ export function TechStackSection() {
               <motion.div
                 key={tech.name}
                 variants={staggerItem}
-                className="group relative bg-card rounded-xl border border-border p-4 card-hover-lift hover:border-primary/40"
+                className="group relative bg-card rounded-xl border border-border p-4 card-hover-lift ring-1 ring-inset ring-border/50 hover:ring-2 hover:ring-inset hover:ring-primary/25"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <motion.div

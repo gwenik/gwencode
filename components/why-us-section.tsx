@@ -116,7 +116,7 @@ export function WhyUsSection() {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className="group flex items-start gap-4 p-4 bg-card rounded-xl border border-border card-hover-lift hover:border-primary/40"
+                className="group flex items-start gap-4 p-4 bg-card rounded-xl border border-border card-hover-lift ring-1 ring-inset ring-border/50 hover:ring-2 hover:ring-inset hover:ring-primary/25"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
                   <advantage.icon className="icon-hover-pop w-5 h-5 text-primary" />

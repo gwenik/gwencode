@@ -52,7 +52,7 @@ export function WhySection() {
             <motion.div
               key={index}
               variants={staggerItem}
-              className="group relative bg-card rounded-2xl border border-border p-6 card-hover-lift hover:border-primary/50"
+              className="group relative bg-card rounded-2xl border border-border p-6 card-hover-lift ring-1 ring-inset ring-border/50 hover:ring-2 hover:ring-inset hover:ring-primary/25"
             >
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
                 <reason.icon className="icon-hover-pop w-7 h-7 text-primary" />

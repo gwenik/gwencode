@@ -73,7 +73,7 @@ export function ServicesSection() {
               <motion.div
                 key={index}
                 variants={staggerItem}
-                className={`group bg-card border border-border rounded-2xl p-6 lg:p-8 card-hover-lift hover:border-primary/50 ${service.cardClassName ?? ""}`}
+                className={`group bg-card border border-border rounded-2xl p-6 lg:p-8 card-hover-lift ring-1 ring-inset ring-border/50 hover:ring-2 hover:ring-inset hover:ring-primary/25 ${service.cardClassName ?? ""}`}
               >
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
                   <Icon className="icon-hover-pop w-7 h-7 text-primary" />
