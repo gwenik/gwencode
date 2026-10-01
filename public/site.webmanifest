@@ -1,0 +1,21 @@
+{
+  "name": "gwensoft",
+  "short_name": "gwensoft",
+  "description": "IT-студия: сайты, боты, приложения и автоматизация",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcfafa",
+  "theme_color": "#d2f26a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
