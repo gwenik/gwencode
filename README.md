@@ -17,7 +17,14 @@ pnpm dev
 pnpm build
 ```
 
-Готовый сайт в `out/`. На Apache есть `public/.htaccess` → `out/.htaccess`.
+Готовый сайт в папке `out/`. Залей **содержимое** `out/` на хостинг по SSH/SFTP (Beget, Timeweb и т.п.) — Node.js не нужен.
+
+На Apache уже лежит `.htaccess` (404 и кэш). Для nginx:
+
+```nginx
+error_page 404 /404.html;
+try_files $uri $uri/ $uri.html /404.html;
+```
 
 ## Контент
 
