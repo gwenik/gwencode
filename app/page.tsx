@@ -295,7 +295,7 @@ function ContactSection() {
         </div>
       </div>
       <p className="contact-hours container">
-        Отвечаем {site.hours} по Москве, обычно в течение {site.responseTime}.
+        Пишем {site.hours} по Москве, обычно в течение {site.responseTime}. Рабочие часы — {site.workHours}.
       </p>
     </section>
   )
@@ -325,7 +325,7 @@ export default function Page() {
             </ContactButton>
           </div>
           <p className="fine-print">
-            Без форм. Telegram @{site.telegram} или WhatsApp {site.phone}. Отвечаем {site.hours} по Москве.
+            Без форм. Telegram @{site.telegram} или WhatsApp {site.phone}. Пишем {site.hours} по Москве.
           </p>
           <div className="hero-facts">
             {site.heroFacts.map((fact) => (
@@ -360,7 +360,7 @@ export default function Page() {
           </div>
           <div>
             <p>
-              Делаем сайты, ботов, приложения и системы учёта для малого и среднего бизнеса. Работаем в Грозном и удалённо по
+              Делаем сайты, ботов, приложения и системы учёта для малого и среднего бизнеса. Работаем в Чечне и удалённо по
               всей России.
             </p>
             <p>
