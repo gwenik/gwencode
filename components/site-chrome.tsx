@@ -98,11 +98,7 @@ export function SiteFooter() {
           <a href={buildContactLink('channel')} target="_blank" rel="noopener noreferrer">
             ТГК @{site.channel}
           </a>
-          <small>
-            © {new Date().getFullYear()} gwensoft
-            <br />
-            {site.legal}
-          </small>
+          <small>© {new Date().getFullYear()} gwencode</small>
         </div>
       </div>
     </footer>
