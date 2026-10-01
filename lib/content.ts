@@ -9,7 +9,7 @@ export const site = {
   responseTime: 'дня',
   workHours: 'с 9:00 до 18:00',
   geography: 'Чечня и вся Россия',
-  legal: 'ООО «ПАРТНЕР» · бренд gwencode',
+  legal: 'ООО «ПАРТНЕР»',
   heroFacts: ['50+ проектов', 'Консультация и аудит — бесплатно', 'Чечня и вся Россия'],
   supportPrice: 'по договорённости',
   stats: [
