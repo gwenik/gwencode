@@ -377,6 +377,7 @@ export const projects = [
     slug: 'sial',
     title: 'SIAL',
     url: 'https://sial-brand.ru',
+    screenshot: '/projects/sial.jpg',
     category: 'Интернет-магазины',
     short: 'Интернет-магазин одежды',
     client: '{{КЛИЕНТ}}',
