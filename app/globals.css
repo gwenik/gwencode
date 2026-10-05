@@ -876,6 +876,30 @@ h1, h2, h3 {
 .skill-chips svg { color: var(--green-dark); }
 .filters button span { color: var(--slate); font-size: 12px; }
 
+.filters { margin-bottom: 28px; }
+.filters button {
+  min-height: 40px;
+  padding: 0 8px 0 16px;
+  gap: 8px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.filters button span {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 99px;
+  background: rgb(27 38 41 / .06);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.filters button.selected span {
+  background: var(--green);
+  color: var(--ink-on-green);
+}
+
 .project-mini-grid,
 .projects-grid {
   display: grid;
@@ -1783,6 +1807,17 @@ footer {
   .project-mini-grid,
   .projects-grid,
   .screenshots { grid-template-columns: 1fr; }
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: -14px;
+    padding: 2px 14px 6px;
+    scroll-padding-inline: 14px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters button { flex: none; scroll-snap-align: start; }
   .project-mini-grid .project-mini:nth-child(n + 3) { display: none; }
   .before-after { grid-template-columns: 1fr; gap: 10px; }
   .state-arrow { transform: rotate(90deg); }

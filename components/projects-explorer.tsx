@@ -9,7 +9,12 @@ import { projects } from '@/lib/content'
 export function ProjectsExplorer() {
   const [filter, setFilter] = useState('Все')
   const categories = useMemo(
-    () => ['Все', ...Array.from(new Set(projects.map((project) => project.category)))],
+    () => [
+      'Все',
+      ...Array.from(new Set(projects.map((project) => project.category))).filter(
+        (category) => !category.includes('{{'),
+      ),
+    ],
     [],
   )
   const visible = useMemo(
