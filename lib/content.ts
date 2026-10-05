@@ -374,6 +374,33 @@ export const projects = [
     order: 4,
   },
   {
+    slug: 'satiysar-edu',
+    title: 'SATIYSAR Edu',
+    url: 'https://edu.satiysar.ru',
+    category: 'Образование',
+    short: 'Платформа школы программирования с ИИ, учётом и интерактивным кодом',
+    client: 'Школа программирования SATIYSAR — Грозный, Аргун и онлайн',
+    features: [
+      'Кабинеты студентов, преподавателей и администраторов',
+      'Учёт посещаемости и успеваемости',
+      'Отчёты по группам и студентам',
+      'Загрузка и разработка учебного материала',
+      'Интерактивная работа с кодом прямо на платформе',
+      'ИИ-помощник в обучении',
+      'Домашние задания, проверка и рейтинг группы',
+    ],
+    platforms: ['Сайт'],
+    screenshot: '/projects/satiysar-edu.jpg',
+    duration: '{{СРОК}}',
+    year: '{{ГОД}}',
+    task: '{{ЗАДАЧА}}',
+    work: '{{ЧТО_СДЕЛАЛИ}}',
+    stack: [] as string[],
+    featured: true,
+    own: false,
+    order: 5,
+  },
+  {
     slug: 'sial',
     title: 'SIAL',
     url: 'https://sial-brand.ru',
@@ -390,7 +417,7 @@ export const projects = [
     stack: [] as string[],
     featured: false,
     own: false,
-    order: 5,
+    order: 6,
   },
   {
     slug: 'assina',
@@ -409,7 +436,7 @@ export const projects = [
     stack: [] as string[],
     featured: false,
     own: false,
-    order: 6,
+    order: 7,
   },
   {
     slug: 'mashar',
@@ -429,7 +456,7 @@ export const projects = [
     status: 'В разработке',
     featured: false,
     own: false,
-    order: 7,
+    order: 8,
   },
   {
     slug: 'groznybuh',
@@ -448,7 +475,7 @@ export const projects = [
     status: 'В разработке',
     featured: false,
     own: false,
-    order: 8,
+    order: 9,
   },
   {
     slug: 'gwenik',
@@ -466,7 +493,7 @@ export const projects = [
     stack: [] as string[],
     featured: false,
     own: false,
-    order: 9,
+    order: 10,
   },
 ]
 
