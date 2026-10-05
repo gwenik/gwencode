@@ -17,6 +17,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react'
+import { ProjectCover } from '@/components/project-cover'
 import { ContactButton } from '@/components/site-chrome'
 import {
   audiences,
@@ -402,15 +403,7 @@ export default function Page() {
           <div className="project-mini-grid">
             {featured.map((project) => (
               <a className="project-mini" href={`/projects/${project.slug}/`} key={project.slug}>
-                <div className={`cover cover-${project.slug}`}>
-                  <div className="cover-window">
-                    <span /><span /><span />
-                    <div className="fake-ui">
-                      <b>{project.title}</b>
-                      <i /><i /><i />
-                    </div>
-                  </div>
-                </div>
+                <ProjectCover project={project} />
                 <p>{project.title}</p>
                 <span>{project.short}</span>
               </a>

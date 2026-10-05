@@ -947,6 +947,32 @@ h1, h2, h3 {
 .cover-window > span:nth-child(1) { left: 10px; background: #b7d8bb; }
 .cover-window > span:nth-child(2) { left: 18px; }
 .cover-window > span:nth-child(3) { left: 26px; }
+.cover-window.has-shot {
+  padding: 20px 0 0;
+  overflow: hidden;
+  display: flex;
+}
+.cover-window.has-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: top center;
+  border-top: 1px solid #edf2f2;
+}
+.cover.cover-logo {
+  position: relative;
+  padding: 0;
+  background: #f9c30a;
+}
+.cover.cover-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .fake-ui { display: flex; flex-direction: column; gap: 7px; }
 .fake-ui b { font-size: 12px; color: var(--green-deep); }
 .fake-ui i {
@@ -1622,6 +1648,18 @@ footer {
   gap: 12px;
   margin-top: 28px;
 }
+.shot-full {
+  display: block;
+  margin-top: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--surface);
+  transition: box-shadow .18s ease-out;
+}
+.shot-full:hover { box-shadow: var(--shadow-hover); }
+.shot-full img { display: block; width: 100%; height: auto; }
 .shot-stub {
   aspect-ratio: 4 / 3;
   border: 1px dashed var(--line);

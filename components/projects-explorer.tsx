@@ -2,22 +2,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
+import { ProjectCover } from '@/components/project-cover'
 import { ContactButton } from '@/components/site-chrome'
 import { projects } from '@/lib/content'
-
-function Cover({ slug, title }: { slug: string; title: string }) {
-  return (
-    <div className={`cover cover-${slug}`}>
-      <div className="cover-window">
-        <span /><span /><span />
-        <div className="fake-ui">
-          <b>{title}</b>
-          <i /><i /><i />
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export function ProjectsExplorer() {
   const [filter, setFilter] = useState('Все')
@@ -74,7 +61,7 @@ export function ProjectsExplorer() {
       <div className="projects-grid">
         {visible.map((project) => (
           <a className="project-card" href={`/projects/${project.slug}/`} key={project.slug}>
-            <Cover slug={project.slug} title={project.title} />
+            <ProjectCover project={project} />
             <div className="project-card-body">
               <div className="badges">
                 {project.own ? <span>Наш продукт</span> : null}
