@@ -315,6 +315,7 @@ export const projects = [
       'Ставится на телефон как приложение (PWA)',
     ],
     platforms: ['Сайт', 'PWA'],
+    screenshot: '/projects/waysklad.jpg',
     duration: '{{СРОК}}',
     year: '{{ГОД}}',
     task: '{{ЗАДАЧА}}',
