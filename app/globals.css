@@ -1454,10 +1454,19 @@ h1, h2, h3 {
   box-shadow: var(--shadow-hover);
   border-color: #9aab9f;
 }
-.contact-card > svg:first-child { color: #4d6b22; flex: none; }
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: var(--green-soft);
+  color: #3f5a1c;
+}
 .contact-card div { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .contact-card b { font-size: 16px; color: var(--ink); }
-.contact-card span {
+.contact-card > div > span {
   font-size: 12px;
   color: var(--muted);
   overflow: hidden;
@@ -1472,9 +1481,16 @@ h1, h2, h3 {
   grid-column: 1 / -1;
   box-shadow: 0 8px 22px rgb(180 210 80 / .28);
 }
-.contact-card.primary > svg { color: var(--ink-on-green); }
+.contact-card.primary .contact-icon {
+  background: rgb(20 24 15 / .12);
+  color: var(--ink-on-green);
+}
 .contact-card.primary b { color: var(--ink-on-green); }
-.contact-card.primary span { color: rgb(20 24 15 / .75); }
+.contact-card.primary > div > span { color: rgb(20 24 15 / .75); }
+.button svg,
+.mobile-bar a svg {
+  flex: none;
+}
 .contact-card-wide { grid-column: 1 / -1; }
 .contact-hours {
   font-size: 14px;
@@ -1517,6 +1533,13 @@ footer {
   font-size: 14px;
   color: var(--muted);
 }
+.footer-contacts a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.footer-contacts a svg { flex: none; opacity: .85; }
 .footer-contacts a:hover { color: var(--green-dark); }
 .footer-contacts small { color: var(--slate); font-size: 13px; }
 

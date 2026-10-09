@@ -9,7 +9,6 @@ import {
   ChevronDown,
   Database,
   Globe2,
-  MessageCircle,
   Rocket,
   Send,
   ShoppingBag,
@@ -18,7 +17,7 @@ import {
   X,
 } from 'lucide-react'
 import { ProjectCover } from '@/components/project-cover'
-import { ContactButton } from '@/components/site-chrome'
+import { ContactButton, TelegramIcon, WhatsAppIcon } from '@/components/site-chrome'
 import {
   audiences,
   buildContactLink,
@@ -277,7 +276,9 @@ function ContactSection() {
         </div>
         <div className="contact-cards contact-cards-simple">
           <a className="contact-card primary" href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
-            <Send aria-hidden />
+            <span className="contact-icon" aria-hidden>
+              <TelegramIcon size={22} />
+            </span>
             <div>
               <b>Написать в Telegram</b>
               <span>@{site.telegram}</span>
@@ -285,7 +286,9 @@ function ContactSection() {
             <ArrowRight aria-hidden />
           </a>
           <a className="contact-card" href={buildContactLink('whatsapp')} target="_blank" rel="noopener noreferrer">
-            <MessageCircle aria-hidden />
+            <span className="contact-icon" aria-hidden>
+              <WhatsAppIcon size={22} />
+            </span>
             <div>
               <b>Написать в WhatsApp</b>
               <span>{site.phone}</span>
