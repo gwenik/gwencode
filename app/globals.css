@@ -692,28 +692,39 @@ h1, h2, h3 {
 
 /* ——— Marquee ——— */
 .marquee {
-  background: var(--green-pale);
-  color: var(--green-deep);
+  background: var(--ink);
+  color: var(--green);
   overflow: hidden;
-  padding: 14px 0;
+  padding: 16px 0;
   white-space: nowrap;
-  border-block: 1px solid var(--green-soft);
+  border-block: none;
 }
 .marquee-track {
   display: flex;
   width: max-content;
-  gap: 26px;
+  gap: 0;
   font-size: 14px;
-  font-weight: 700;
-  animation: marquee 32s linear infinite;
+  font-weight: 600;
+  letter-spacing: .01em;
+  animation: marquee 48s linear infinite;
 }
 .marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding-inline: 18px;
+}
 .marquee i {
-  color: var(--powder);
-  margin-left: 26px;
+  color: rgb(210 242 106 / .45);
+  margin-left: 0;
   font-style: normal;
+  font-weight: 400;
 }
 @keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
 
 /* ——— Roadmap ——— */
 .roadmap-wrap { padding: 64px 0 20px; }
@@ -1025,32 +1036,35 @@ h1, h2, h3 {
 }
 .audience-section .eyebrow { color: #3f5a1c; }
 .audience-tabs {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  scrollbar-width: thin;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 .audience-tabs button {
-  white-space: nowrap;
+  white-space: normal;
+  text-align: left;
   border: 1px solid #b7c3bc;
   background: var(--surface);
-  border-radius: 99px;
-  padding: 10px 15px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--muted);
-  min-height: 44px;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  min-height: 56px;
   box-shadow: 0 1px 2px rgb(27 38 41 / .04);
+  transition: border-color .15s, background .15s, box-shadow .15s;
 }
-.audience-tabs button span { color: var(--slate); margin-right: 6px; }
+.audience-tabs button:hover {
+  border-color: var(--green-deep);
+  background: #f7fbf0;
+}
 .audience-tabs button.selected {
   background: var(--green);
   border-color: var(--green);
   color: var(--ink-on-green);
-  box-shadow: none;
+  box-shadow: 0 0 0 1px var(--green);
 }
-.audience-tabs button.selected span { color: var(--ink-on-green); opacity: .7; }
 .before-after {
   display: grid;
   grid-template-columns: 1fr 48px 1fr;
@@ -1803,6 +1817,7 @@ footer {
   .section,
   .audience-section,
   .contact-section { padding-block: 64px; }
+  .audience-tabs { grid-template-columns: 1fr; }
   .stats-grid { margin: 36px 0; }
   .project-mini-grid,
   .projects-grid,

@@ -219,11 +219,11 @@ function AudienceSection() {
     <section className="audience-section" id="audiences">
       <div className="container">
         <p className="eyebrow">Шаг 2 · Что решаем и как</p>
-        <h2>Какую проблему решим именно для вас</h2>
+        <h2>Узнаёте свою боль? Покажем, как её закрыть</h2>
         <p className="section-subtitle">
-          Не под отрасль — под боль. Выберите близкую ситуацию: покажем, что обычно ломается сейчас и как это выглядит после запуска.
+          Не «для ритейла» и не «для HoReCa» — для вашей конкретной дыры в деньгах, заявках или учёте. Нажмите на ситуацию: слева — как обычно болит сейчас, справа — что меняется после запуска.
         </p>
-        <div className="audience-tabs" role="tablist" aria-label="Тип задачи">
+        <div className="audience-tabs" role="tablist" aria-label="Боль бизнеса">
           {audiences.map((item, index) => (
             <button
               key={item.title}
@@ -233,29 +233,28 @@ function AudienceSection() {
               className={selected === index ? 'selected' : ''}
               onClick={() => setSelected(index)}
             >
-              <span>{index + 1}</span>
               {item.title}
             </button>
           ))}
         </div>
         <div className="before-after" role="tabpanel">
           <div className="state now">
-            <span className="state-label"><X size={15} aria-hidden /> Сейчас</span>
+            <span className="state-label"><X size={15} aria-hidden /> Как болит сейчас</span>
             <ul>{audience.now.map((item) => <li key={item}>{item}</li>)}</ul>
           </div>
           <ArrowRight className="state-arrow" aria-hidden />
           <div className="state after">
-            <span className="state-label"><Check size={15} aria-hidden /> После запуска</span>
+            <span className="state-label"><Check size={15} aria-hidden /> Как закрываем</span>
             <ul>{audience.after.map((item) => <li key={item}>{item}</li>)}</ul>
           </div>
         </div>
         <div className="help-row">
           <div>
-            <span>Что поможет:</span>
+            <span>Чем закрываем:</span>
             {audience.services.map((item) => <b key={item}>{item}</b>)}
           </div>
           <ContactButton channel="telegram" message={audience.message}>
-            Обсудить мою ситуацию
+            Это про меня — обсудить
           </ContactButton>
         </div>
       </div>
