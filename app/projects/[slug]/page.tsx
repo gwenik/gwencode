@@ -133,10 +133,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <span>{project.results.join(' · ')}</span>
             </div>
           ) : null}
-          <div className="tech-box">
-            <small>Технологии</small>
-            <span>{project.stack.length ? project.stack.join(', ') : '{{ТЕХНОЛОГИИ}}'}</span>
-          </div>
+          {project.stack.length ? (
+            <div className="tech-box">
+              <small>Технологии</small>
+              <span>{project.stack.join(', ')}</span>
+            </div>
+          ) : null}
           <div className="tech-box">
             <small>Клиент</small>
             <span>{project.client}</span>

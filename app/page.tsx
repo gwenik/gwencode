@@ -318,8 +318,8 @@ export default function Page() {
             <span>из тетрадки</span> в телефон
           </h1>
           <p className="hero-lead">
-            Делаем сайты, Telegram-ботов, мобильные приложения и системы учёта для магазинов, оптовиков, школ и экспертов.
-            Объясняем простыми словами, без сложных терминов.
+            Сайты, боты, приложения и учёт для бизнеса, которому надоели тетрадки и потерянные заявки. Говорим просто,
+            работаем по договору, цену обсуждаем под вашу задачу — без прайса «для всех».
           </p>
           <div className="hero-buttons">
             <ContactButton>Написать в Telegram</ContactButton>
@@ -424,10 +424,13 @@ export default function Page() {
       <section id="services" className="section container services-section">
         <div className="section-intro">
           <div>
-            <p className="eyebrow">Все услуги и цены</p>
+            <p className="eyebrow">Что можем сделать</p>
             <h2>Соберём решение под вашу задачу</h2>
           </div>
-          <p>Цены — ориентир. Точную сумму и срок называем после короткого разговора о задаче.</p>
+          <p>
+            Цену и точный срок называем после короткого разговора — у каждого бизнеса свой объём. Консультация и аудит
+            бесплатные.
+          </p>
         </div>
         <div className="services-grid">
           {services.map((service, index) => {
@@ -507,8 +510,10 @@ export default function Page() {
                   {service.result}
                 </p>
                 <div className="service-footer">
-                  <strong>от {service.price} ₽</strong>
-                  <span>от {service.duration}</span>
+                  <div className="service-meta">
+                    <strong>{service.pricing}</strong>
+                    <span>Срок {service.duration}</span>
+                  </div>
                   <a
                     href={buildContactLink('telegram', `Здравствуйте! Интересует: ${service.title}.`)}
                     target="_blank"
