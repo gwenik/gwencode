@@ -46,8 +46,8 @@ export function WhatsAppIcon({ size = 18, ...props }: IconProps) {
 
 export function Logo() {
   return (
-    <a href="/" className="logo" aria-label="gwensoft — на главную">
-      gwen<span>soft</span>
+    <a href="/" className="logo" aria-label="gwencode — на главную">
+      gwen<span>code</span>
       <i />
     </a>
   )

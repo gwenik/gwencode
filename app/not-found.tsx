@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Страница не найдена',
-  description: 'Такой страницы на сайте gwensoft нет.',
+  description: 'Такой страницы на сайте gwencode нет.',
 }
 
 export default function NotFound() {

@@ -3,7 +3,7 @@ import { ProjectsExplorer } from '@/components/projects-explorer'
 
 export const metadata: Metadata = {
   title: 'Проекты',
-  description: 'Сайты, магазины, доставка и системы учёта, которые делала студия gwensoft.',
+  description: 'Сайты, магазины, доставка и системы учёта, которые делала студия gwencode.',
 }
 
 export default function ProjectsPage() {

@@ -1,5 +1,5 @@
 export const site = {
-  name: 'gwensoft',
+  name: 'gwencode',
   url: 'https://gwensoft.ru',
   telegram: 'sheikhkitten',
   channel: 'gwencode',
@@ -19,7 +19,7 @@ export const site = {
   metrikaId: '',
 }
 
-export const defaultMessage = 'Здравствуйте! Пишу с сайта gwensoft.'
+export const defaultMessage = 'Здравствуйте! Пишу с сайта gwencode.'
 
 export type ContactChannel = 'telegram' | 'whatsapp' | 'phone' | 'channel'
 
