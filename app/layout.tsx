@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { Analytics } from '@vercel/analytics/next'
+import { AnalyticsLoader, CookieConsent } from '@/components/cookie-consent'
 import { MobileBar, SiteFooter, SiteHeader } from '@/components/site-chrome'
-import { SeoJsonLd, YandexMetrika } from '@/components/seo-json-ld'
+import { SeoJsonLd } from '@/components/seo-json-ld'
 import { site } from '@/lib/content'
 import './globals.css'
 
@@ -121,8 +121,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div id="content">{children}</div>
         <SiteFooter />
         <MobileBar />
-        <YandexMetrika />
-        {process.env.NODE_ENV === 'production' ? <Analytics /> : null}
+        <CookieConsent />
+        <AnalyticsLoader />
       </body>
     </html>
   )

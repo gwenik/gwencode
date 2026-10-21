@@ -3,6 +3,7 @@
 import { useEffect, useState, type SVGProps } from 'react'
 import { Menu, Phone, X } from 'lucide-react'
 import { buildContactLink, site } from '@/lib/content'
+import { legalNav } from '@/lib/legal'
 
 const nav = [
   { href: '/#about', label: 'Кто мы' },
@@ -130,6 +131,13 @@ export function SiteFooter() {
             <WhatsAppIcon size={15} />
             WhatsApp {site.phone}
           </a>
+          <nav className="footer-legal" aria-label="Юридические документы">
+            {legalNav.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
           <small>© {new Date().getFullYear()} gwencode</small>
         </div>
       </div>
