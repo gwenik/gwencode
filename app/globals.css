@@ -1267,14 +1267,20 @@ h1, h2, h3 {
 .process-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px 20px;
+  gap: 14px;
   margin-top: 52px;
 }
-.process-step { position: relative; padding-left: 48px; }
+.process-step {
+  position: relative;
+  padding: 18px 18px 18px 52px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
 .process-step > span {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 16px;
+  top: 18px;
   color: var(--green);
   font-weight: 800;
   font-size: 15px;
