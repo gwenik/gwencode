@@ -130,10 +130,6 @@ export function SiteFooter() {
             <WhatsAppIcon size={15} />
             WhatsApp {site.phone}
           </a>
-          <a href={buildContactLink('channel')} target="_blank" rel="noopener noreferrer">
-            <TelegramIcon size={15} />
-            ТГК @{site.channel}
-          </a>
           <small>© {new Date().getFullYear()} gwencode</small>
         </div>
       </div>
