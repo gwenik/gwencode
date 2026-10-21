@@ -1272,19 +1272,31 @@ h1, h2, h3 {
 }
 .process-step {
   position: relative;
-  padding: 18px 18px 18px 52px;
+  padding: 18px 18px 44px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--surface);
+  overflow: hidden;
 }
 .process-step > span {
   position: absolute;
-  left: 16px;
-  top: 18px;
-  color: var(--green);
+  right: 0;
+  bottom: 0;
+  min-width: 40px;
+  height: 32px;
+  padding: 0 12px 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-soft);
+  color: var(--green-deep);
   font-weight: 800;
-  font-size: 15px;
+  font-size: 13px;
   font-family: var(--display);
+  letter-spacing: .02em;
+  border-radius: 12px 0 15px 0;
+  border-top: 1px solid #d5ded7;
+  border-left: 1px solid #d5ded7;
 }
 .process-step h3 {
   font-size: 18px;
