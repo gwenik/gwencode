@@ -8,16 +8,27 @@ export const site = {
   hours: 'круглосуточно',
   responseTime: 'дня',
   workHours: 'с 9:00 до 18:00',
-  geography: 'Чечня и вся Россия',
-  heroFacts: ['50+ проектов', 'Консультация и аудит — бесплатно', 'Чечня и вся Россия'],
+  geography: 'Грозный, Чечня и вся Россия',
+  city: 'Грозный',
+  region: 'Чеченская Республика',
+  country: 'Россия',
+  heroFacts: ['50+ проектов', 'Консультация и аудит — бесплатно', 'IT-команда в Грозном'],
   supportPrice: 'по договорённости',
   stats: [
     { value: '50', label: 'запущенных проектов' },
     { value: '2018', label: 'год старта разработки' },
     { value: '100', label: 'пользователей у ВайСклада по всей России' },
   ],
+  /** ID счётчика Яндекс.Метрики — подставь свой, скрипт подключится сам */
   metrikaId: '',
+  /** Код верификации Яндекс.Вебмастера (content из meta) */
+  yandexVerification: '',
+  /** Код верификации Google Search Console */
+  googleVerification: '',
 }
+
+/** Слаги проектов на главной — строго в этом порядке */
+export const homeProjectSlugs = ['yumlai', 'satiysar-edu', 'tidam'] as const
 
 export const defaultMessage = 'Здравствуйте! Пишу с сайта gwencode.'
 
@@ -348,7 +359,7 @@ export const projects = [
     work: 'Сделали свой продукт: товары, продажи, долги, склады, витрина и аналитика. Работает в браузере и ставится на телефон как приложение. Уже пользуются магазины по всей России.',
     results: ['100+ активных пользователей по всей России'],
     stack: ['Next.js', 'PWA'],
-    featured: true,
+    featured: false,
     own: true,
     order: 2,
   },

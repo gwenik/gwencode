@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Check, ExternalLink } from 'lucide-react'
-import { ProjectCover } from '@/components/project-cover'
+import { ProjectCover, ProjectShot } from '@/components/project-cover'
 import { ContactButton } from '@/components/site-chrome'
 import { projects } from '@/lib/content'
 
@@ -15,7 +15,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const project = projects.find((item) => item.slug === slug)
   if (!project) return { title: 'Проект не найден' }
-  return { title: project.title, description: project.short }
+  return {
+    title: `${project.title} — кейс IT-студии`,
+    description: `${project.short}. Проект студии gwencode в Грозном.`,
+    alternates: { canonical: `/projects/${project.slug}/` },
+    openGraph: {
+      title: `${project.title} — gwencode`,
+      description: project.short,
+      type: 'article',
+      locale: 'ru_RU',
+    },
+  }
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -99,14 +109,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               rel="noopener noreferrer"
               aria-label={`Открыть скриншот ${project.title} в полном размере`}
             >
-              <img
-                src={screenshot}
-                alt={`Главная страница ${project.title}`}
-                width={1600}
-                height={830}
-                loading="lazy"
-                decoding="async"
-              />
+              <ProjectShot src={screenshot} title={project.title} />
             </a>
           ) : (
             <div className="screenshots">

@@ -1,12 +1,13 @@
 {
-  "name": "gwencode",
+  "name": "gwencode — IT в Грозном",
   "short_name": "gwencode",
-  "description": "Сайты, боты, приложения и системы учёта для бизнеса",
+  "description": "IT-компания в Грозном: сайты, боты, приложения и системы учёта",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fcfafa",
   "theme_color": "#d2f26a",
   "lang": "ru",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/icon-192.png",

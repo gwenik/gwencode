@@ -22,6 +22,7 @@ import {
   audiences,
   buildContactLink,
   faq,
+  homeProjectSlugs,
   marqueeItems,
   principles,
   processSteps,
@@ -304,22 +305,24 @@ function ContactSection() {
   )
 }
 
-const featured = projects.filter((project) => project.featured).sort((a, b) => a.order - b.order)
+const featured = homeProjectSlugs
+  .map((slug) => projects.find((project) => project.slug === slug))
+  .filter((project): project is (typeof projects)[number] => Boolean(project))
 
 export default function Page() {
   return (
     <main>
       <section className="hero container">
         <div className="hero-copy">
-          <p className="eyebrow">IT-студия gwencode</p>
+          <p className="eyebrow">IT-компания в Грозном · gwencode</p>
           <h1>
             Переводим бизнес
             <br />
             <span>из тетрадки</span> в телефон
           </h1>
           <p className="hero-lead">
-            Сайты, боты, приложения и учёт для бизнеса, которому надоели тетрадки и потерянные заявки. Говорим просто,
-            работаем по договору, цену обсуждаем под вашу задачу — без прайса «для всех».
+            IT-команда в Грозном: сайты, боты, приложения и учёт для бизнеса, которому надоели тетрадки и потерянные
+            заявки. Говорим просто, работаем по договору, цену обсуждаем под задачу — без прайса «для всех».
           </p>
           <div className="hero-buttons">
             <ContactButton>Написать в Telegram</ContactButton>
@@ -359,12 +362,12 @@ export default function Page() {
         <div className="section-intro">
           <div>
             <p className="eyebrow">Шаг 1 · Кто мы</p>
-            <h2>Мы — gwencode, команда разработчиков</h2>
+            <h2>Мы — gwencode, IT-команда в Грозном</h2>
           </div>
           <div>
             <p>
-              Делаем сайты, ботов, приложения и системы учёта для малого и среднего бизнеса. Работаем в Чечне и удалённо по
-              всей России.
+              IT-компания из Грозного: сайты, боты, приложения и системы учёта для малого и среднего бизнеса. Работаем в
+              Чеченской Республике и удалённо по всей России.
             </p>
             <p>
               Мы не только выполняем заказы, но и делаем свои продукты. Например, ВайСклад — бесплатная система учёта для
@@ -403,9 +406,9 @@ export default function Page() {
             </a>
           </div>
           <div className="project-mini-grid">
-            {featured.map((project) => (
+            {featured.map((project, index) => (
               <a className="project-mini" href={`/projects/${project.slug}/`} key={project.slug}>
-                <ProjectCover project={project} />
+                <ProjectCover project={project} eager={index === 0} />
                 <p>{project.title}</p>
                 <span>{project.short}</span>
               </a>

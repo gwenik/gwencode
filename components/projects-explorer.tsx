@@ -66,7 +66,10 @@ export function ProjectsExplorer() {
       <div className="projects-grid">
         {visible.map((project) => (
           <a className="project-card" href={`/projects/${project.slug}/`} key={project.slug}>
-            <ProjectCover project={project} />
+            <ProjectCover
+              project={project}
+              sizes="(max-width: 640px) 92vw, (max-width: 980px) 45vw, 360px"
+            />
             <div className="project-card-body">
               <div className="badges">
                 {project.own ? <span>Наш продукт</span> : null}

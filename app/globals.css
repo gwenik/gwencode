@@ -934,6 +934,12 @@ h1, h2, h3 {
 .project-card {
   overflow: hidden;
   transition: transform .18s ease-out, box-shadow .18s ease-out;
+  content-visibility: auto;
+  contain-intrinsic-size: 360px;
+}
+.cover img,
+.shot-full img {
+  content-visibility: auto;
 }
 .project-mini:hover,
 .project-card:hover {
@@ -1884,7 +1890,7 @@ footer {
   }
   .filters::-webkit-scrollbar { display: none; }
   .filters button { flex: none; scroll-snap-align: start; }
-  .project-mini-grid .project-mini:nth-child(n + 3) { display: none; }
+  .project-mini-grid .project-mini:nth-child(n + 4) { display: none; }
   .before-after { grid-template-columns: 1fr; gap: 10px; }
   .state-arrow { transform: rotate(90deg); }
   .help-row { flex-direction: column; align-items: stretch; }
