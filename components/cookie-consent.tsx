@@ -45,16 +45,6 @@ function loadYandexMetrika(id: string) {
     document.head.appendChild(script)
   }
 
-  const init = () => {
-    window.ym?.(id, 'init', {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-      webvisor: true,
-    })
-  }
-
-  // ym появляется после загрузки tag.js; очередь через заглушку
   type YmStub = ((...args: unknown[]) => void) & { a?: unknown[][]; l?: number }
   if (!window.ym) {
     const stub: YmStub = (...args: unknown[]) => {
@@ -64,7 +54,13 @@ function loadYandexMetrika(id: string) {
     stub.l = Date.now()
     window.ym = stub as unknown as Window['ym']
   }
-  init()
+
+  window.ym?.(id, 'init', {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
+  })
 }
 
 export function CookieConsent() {
@@ -97,22 +93,16 @@ export function CookieConsent() {
   return (
     <div className="cookie-banner" role="dialog" aria-labelledby="cookie-banner-title" aria-live="polite">
       <div className="cookie-banner-inner">
-        <div>
-          <p id="cookie-banner-title" className="cookie-banner-title">
-            Мы используем cookies
-          </p>
-          <p className="cookie-banner-text">
-            Нужные cookies помогают сайту работать. Аналитические (Яндекс.Метрика) включаем только с вашего согласия —
-            чтобы понимать, как пользуются сайтом. Подробнее — в <a href="/legal/cookies/">политике cookies</a> и{' '}
-            <a href="/legal/privacy/">политике конфиденциальности</a>.
-          </p>
-        </div>
+        <p id="cookie-banner-title" className="cookie-banner-text">
+          Файлы cookie нужны для работы сайта. Аналитику включаем только с согласия.{' '}
+          <a href="/legal/cookies/">Подробнее</a>
+        </p>
         <div className="cookie-banner-actions">
           <button type="button" className="button button-secondary" onClick={acceptNecessary}>
-            Только необходимые
+            Только нужные
           </button>
           <button type="button" className="button button-primary" onClick={acceptAll}>
-            Принять все
+            Принять
           </button>
         </div>
       </div>
@@ -120,7 +110,6 @@ export function CookieConsent() {
   )
 }
 
-/** Подключает Метрику, если согласие уже было сохранено ранее */
 export function AnalyticsLoader() {
   useEffect(() => {
     const consent = readConsent()

@@ -23,7 +23,7 @@ export const legal = {
 export const legalNav = [
   { href: '/legal/privacy/', label: 'Конфиденциальность' },
   { href: '/legal/terms/', label: 'Соглашение' },
-  { href: '/legal/cookies/', label: 'Cookies' },
+  { href: '/legal/cookies/', label: 'Файлы cookie' },
 ] as const
 
 export const CONSENT_STORAGE_KEY = 'gwencode-cookie-consent'

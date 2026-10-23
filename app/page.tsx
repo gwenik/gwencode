@@ -55,7 +55,7 @@ function PhoneMockup() {
         </div>
       </div>
       <div className="paper">
-        <span>Кроссовки 42 — 2 шт.</span>
+        <span>Кроссовки 44 — 2 шт.</span>
         <span>Выручка за день — ?</span>
         <span>Долг 1 500 ₽ — вернуть в пт</span>
       </div>
@@ -106,12 +106,12 @@ function PhoneMockup() {
               <div className="tg-chat">
                 <div className="tg-day">сегодня</div>
                 <div className="bubble client">
-                  Здравствуйте! Есть кроссовки 42 размера?
+                  Здравствуйте, хочу приобрести кроссовки, есть 44 размер?
                   <em>09:40</em>
                 </div>
                 <div className="typing">бот печатает…</div>
                 <div className="bubble bot">
-                  Да, есть 3 модели 👟
+                  Приветствуем вас, да, у нас в наличии есть 10 моделей.
                   <div className="quick">
                     <span>Показать</span>
                     <span>Позвать менеджера</span>
@@ -119,13 +119,16 @@ function PhoneMockup() {
                   <em>09:41</em>
                 </div>
                 <div className="bubble client">
-                  Беру вторые, доставка на завтра
+                  Беру вторые, доставка сегодня в 18:30, по этой улице…
                   <em>09:41</em>
                 </div>
                 <div className="bubble bot">
-                  Заказ №1024 оформлен ✅
+                  Заказ номер №1024 оформлен <span className="tg-ok">✓</span>
                   <br />
-                  Ссылка на оплату отправлена
+                  Ссылка на оплату выслана ниже:
+                  <span className="tg-pay-hint" aria-hidden="true">
+                    ↓↓
+                  </span>
                   <em>09:42</em>
                 </div>
               </div>
