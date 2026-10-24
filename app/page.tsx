@@ -9,6 +9,7 @@ import {
   ChevronDown,
   Database,
   Globe2,
+  Phone,
   Rocket,
   Send,
   ShoppingBag,
@@ -24,7 +25,6 @@ import {
   faq,
   homeProjectSlugs,
   marqueeItems,
-  principles,
   processSteps,
   projects,
   services,
@@ -163,39 +163,40 @@ function Roadmap() {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    // audiences + services = шаг 2; about = 1; contact = 3
-    const sectionToStep: Record<string, number> = {
-      about: 0,
-      audiences: 1,
-      services: 1,
-      contact: 2,
-    }
-    const ids = Object.keys(sectionToStep)
-    const nodes = ids
-      .map((id) => document.getElementById(id))
-      .filter((node): node is HTMLElement => Boolean(node))
-    const ratios = new Map<string, number>()
+    const markers = [
+      { id: 'about', step: 0 },
+      { id: 'audiences', step: 1 },
+      { id: 'services', step: 1 },
+      { id: 'contact', step: 2 },
+    ]
+    let frame = 0
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0)
-        }
-        let bestId = ''
-        let bestRatio = 0
-        for (const id of ids) {
-          const ratio = ratios.get(id) ?? 0
-          if (ratio > bestRatio) {
-            bestRatio = ratio
-            bestId = id
-          }
-        }
-        if (bestId && bestRatio > 0) setActive(sectionToStep[bestId])
-      },
-      { rootMargin: '-28% 0px -52% 0px', threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] },
-    )
-    nodes.forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
+    const update = () => {
+      frame = 0
+      const line = window.scrollY + 120
+      let step = 0
+      for (const marker of markers) {
+        const node = document.getElementById(marker.id)
+        if (!node) continue
+        const top = node.getBoundingClientRect().top + window.scrollY
+        if (top <= line) step = marker.step
+      }
+      setActive(step)
+    }
+
+    const onScroll = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
   }, [])
 
   return (
@@ -224,7 +225,7 @@ function AudienceSection() {
         <p className="eyebrow">Шаг 2 · Что решаем и как</p>
         <h2>Узнаёте свою боль? Покажем, как её закрыть</h2>
         <p className="section-subtitle">
-          Не «для ритейла» и не «для HoReCa» — для вашей конкретной дыры в деньгах, заявках или учёте. Нажмите на ситуацию: слева — как обычно болит сейчас, справа — что меняется после запуска.
+          Выберите ситуацию. Слева — как сейчас, справа — что меняется.
         </p>
         <div className="audience-tabs" role="tablist" aria-label="Боль бизнеса">
           {audiences.map((item, index) => (
@@ -272,11 +273,10 @@ function ContactSection() {
         <div>
           <p className="eyebrow">Шаг 3 · Связаться</p>
           <h2>Напишите нам — как вам удобно</h2>
-          <p>
-            Формы заполнять не нужно. Напишите задачу своими словами в Telegram или WhatsApp — дальше мы сами зададим
-            вопросы.
+          <p>Без форм. Напишите задачу своими словами — вопросы зададим сами.</p>
+          <p className="contact-note">
+            Консультация и аудит вашей компании — <em>бесплатно</em>.
           </p>
-          <p className="contact-note">Консультация и аудит вашей компании — бесплатно.</p>
         </div>
         <div className="contact-cards contact-cards-simple">
           <a className="contact-card primary" href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
@@ -302,7 +302,7 @@ function ContactSection() {
         </div>
       </div>
       <p className="contact-hours container">
-        Пишем {site.hours} по Москве, обычно в течение {site.responseTime}. Рабочие часы — {site.workHours}.
+        Пишите в любое время, мы на связи, обычно отвечаем в течение дня с 9:00 до 18:00 по Москве.
       </p>
     </section>
   )
@@ -324,18 +324,23 @@ export default function Page() {
             <span>из тетрадки</span> в телефон
           </h1>
           <p className="hero-lead">
-            IT-команда в Грозном: сайты, боты, приложения и учёт для бизнеса, которому надоели тетрадки и потерянные
-            заявки. Говорим просто, работаем по договору, цену обсуждаем под задачу — без прайса «для всех».
+            Сайты, боты, приложения и учёт. Говорим просто, цену называем под задачу.
           </p>
-          <div className="hero-buttons">
+          <div className="hero-cta">
             <ContactButton>Написать в Telegram</ContactButton>
-            <ContactButton channel="whatsapp" className="button button-secondary">
-              Написать в WhatsApp
-            </ContactButton>
+            <div className="hero-cta-side">
+              <ContactButton channel="whatsapp" className="button button-secondary">
+                Написать в WhatsApp
+              </ContactButton>
+              <a
+                className="button button-secondary button-call"
+                href={buildContactLink('phone')}
+                aria-label={`Позвонить ${site.phone}`}
+              >
+                <Phone size={18} aria-hidden />
+              </a>
+            </div>
           </div>
-          <p className="fine-print">
-            Без форм. Telegram @{site.telegram} или WhatsApp {site.phone}. Пишем {site.hours} по Москве.
-          </p>
           <div className="hero-facts">
             {site.heroFacts.map((fact) => (
               <span key={fact}>
@@ -362,34 +367,44 @@ export default function Page() {
       <Roadmap />
 
       <section id="about" className="section container">
-        <div className="section-intro">
-          <div>
-            <p className="eyebrow">Шаг 1 · Кто мы</p>
-            <h2>Мы — gwencode, IT-команда в Грозном</h2>
-          </div>
-          <div>
-            <p>
-              IT-компания из Грозного: сайты, боты, приложения и системы учёта для малого и среднего бизнеса. Работаем в
-              Чеченской Республике и удалённо по всей России.
-            </p>
-            <p>
-              Мы не только выполняем заказы, но и делаем свои продукты. Например, ВайСклад — бесплатная система учёта для
-              небольших магазинов, ею уже пользуются реальные магазины. Поэтому понимаем бизнес не по учебнику.
-            </p>
-          </div>
+        <div className="about-head">
+          <p className="eyebrow">Шаг 1 · Кто мы</p>
+          <h2>Запускаем проекты и свои продукты</h2>
+          <p className="about-lead">
+            Мы амбициозная команда разработчиков с огромным багажом знаний, языков программирования
+            и желанием цифровизировать ваш бизнес. Но мы также не забываем и про свои проекты.
+          </p>
         </div>
-        <div className="stats-grid">
-          {site.stats.map((stat) => (
-            <div className="stat" key={stat.label}>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
+        <div className="about-board">
+          <article className="about-card">
+            <span>Кто мы</span>
+            <strong>50+</strong>
+            <p>Коммерческих проектов. Разработчики команды в IT с 2018 года.</p>
+          </article>
+          <article className="about-card about-card-product">
+            <span>Свой продукт</span>
+            <strong>100 реальных пользователей</strong>
+            <p>
+              У{' '}
+              <a href="https://waysklad.gwensoft.ru" target="_blank" rel="noopener noreferrer">
+                ВайСклада
+              </a>{' '}
+              — продукт учёта для малого бизнеса.
+            </p>
+          </article>
+          <a className="about-card about-card-accent" href="/#contact">
+            <span>Как связаться</span>
+            <strong>Написать</strong>
+            <p>Telegram, WhatsApp или звонок. Консультация бесплатно.</p>
+          </a>
         </div>
         <div className="section-label">
           <span>Что умеем</span>
           <span className="label-line" />
         </div>
+        <p className="skills-note">
+          Боты, сайты, магазины, приложения, учёт и доработка. Ниже — проекты, которые уже работают.
+        </p>
         <div className="skill-chips">
           {services.map((service, index) => {
             const Icon = icons[index]
@@ -404,7 +419,7 @@ export default function Page() {
         <div className="projects-preview">
           <div className="section-label">
             <span>Наши проекты</span>
-            <a href="/projects/">
+            <a className="projects-all" href="/projects/">
               Смотреть все проекты ({projects.length}) <ArrowRight size={16} aria-hidden />
             </a>
           </div>
@@ -418,8 +433,8 @@ export default function Page() {
             ))}
           </div>
         </div>
-        <div className="help-row" style={{ marginTop: 36 }}>
-          <a className="button button-secondary" href="/#services">
+        <div className="help-row about-next">
+          <a className="button button-secondary" href="/#audiences">
             Следующий шаг: что решаем <ArrowRight size={18} aria-hidden />
           </a>
         </div>
@@ -428,15 +443,23 @@ export default function Page() {
       <AudienceSection />
 
       <section id="services" className="section container services-section">
-        <div className="section-intro">
+        <svg className="offer-arc" viewBox="0 0 170 240" aria-hidden="true">
+          <defs>
+            <path id="offer-arc-path" d="M6 28 Q 152 16 160 228" />
+          </defs>
+          <text>
+            <textPath href="#offer-arc-path" xlinkHref="#offer-arc-path">
+              50+ проектов · с 2018 · ВайСклад · 100 человек · 50+ проектов · с 2018 · ВайСклад · 100 человек ·
+              <animate attributeName="startOffset" from="0%" to="-100%" dur="14s" repeatCount="indefinite" />
+            </textPath>
+          </text>
+        </svg>
+        <div className="section-intro services-intro">
           <div>
             <p className="eyebrow">Что можем сделать</p>
             <h2>Соберём решение под вашу задачу</h2>
+            <p>Цену называем после разговора. Консультация бесплатная.</p>
           </div>
-          <p>
-            Цену и точный срок называем после короткого разговора — у каждого бизнеса свой объём. Консультация и аудит
-            бесплатные.
-          </p>
         </div>
         <div className="services-grid">
           {services.map((service, index) => {
@@ -511,10 +534,6 @@ export default function Page() {
                     ))}
                   </ul>
                 </details>
-                <p className="result">
-                  <b>Результат — </b>
-                  {service.result}
-                </p>
                 <div className="service-footer">
                   <div className="service-meta">
                     <strong>{service.pricing}</strong>
@@ -540,26 +559,18 @@ export default function Page() {
             <p className="eyebrow">Как мы работаем</p>
             <h2>От первого сообщения до работающего проекта</h2>
           </div>
-          <p>Без сложных терминов и неожиданных счетов. Сначала разбираемся в задаче, потом согласуем план.</p>
+          <p>Сначала задача, потом план. Без сюрпризов в счёте.</p>
         </div>
         <div className="process-grid">
           {processSteps.map((step, index) => (
             <div className="process-step" key={step.title}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>
-                {step.title}
                 {'badge' in step && step.badge ? <em>{step.badge}</em> : null}
+                {step.title}
               </h3>
               <p>{step.text}</p>
             </div>
-          ))}
-        </div>
-        <div className="principles">
-          {principles.map((item) => (
-            <span key={item}>
-              <Check size={17} aria-hidden />
-              {item}
-            </span>
           ))}
         </div>
       </section>

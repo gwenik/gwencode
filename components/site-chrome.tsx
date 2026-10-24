@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState, type SVGProps } from 'react'
-import { Menu, Phone, X } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { FolderKanban, MessageCircle, Phone, Sparkles, Users } from 'lucide-react'
 import { buildContactLink, site } from '@/lib/content'
 import { legalNav } from '@/lib/legal'
 
@@ -55,25 +56,13 @@ export function Logo() {
 }
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    document.body.classList.toggle('nav-lock', open)
-    if (!open) return
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open])
-
   return (
     <header className="site-header">
       <div className="container nav-wrap">
         <Logo />
-        <nav className={open ? 'mobile-open' : ''} aria-label="Главная навигация">
+        <nav aria-label="Главная навигация">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
@@ -86,17 +75,6 @@ export function SiteHeader() {
             <span className="tg-channel-label">наш тгк</span>
             <span>@{site.channel}</span>
           </a>
-        </div>
-        <div className="header-actions">
-          <button
-            className="menu-button"
-            type="button"
-            aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
-            aria-expanded={open}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <X /> : <Menu />}
-          </button>
         </div>
       </div>
     </header>
@@ -123,14 +101,6 @@ export function SiteFooter() {
           ))}
         </nav>
         <div className="footer-contacts">
-          <a href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
-            <TelegramIcon size={15} />
-            Telegram @{site.telegram}
-          </a>
-          <a href={buildContactLink('whatsapp')} target="_blank" rel="noopener noreferrer">
-            <WhatsAppIcon size={15} />
-            WhatsApp {site.phone}
-          </a>
           <nav className="footer-legal" aria-label="Юридические документы">
             {legalNav.map((item) => (
               <a key={item.href} href={item.href}>
@@ -145,18 +115,67 @@ export function SiteFooter() {
   )
 }
 
+const tabs = [
+  { href: '/#about', match: 'about', label: 'Кто мы', icon: Users },
+  { href: '/#audiences', match: 'audiences', label: 'Что решаем', icon: Sparkles },
+  { href: '/#contact', match: 'contact', label: 'Связаться', icon: MessageCircle },
+  { href: '/projects/', match: 'projects', label: 'Проекты', icon: FolderKanban },
+] as const
+
 export function MobileBar() {
+  const pathname = usePathname()
+  const [section, setSection] = useState('about')
+
+  useEffect(() => {
+    if (pathname !== '/') return
+    const markers = [
+      { id: 'about', match: 'about' },
+      { id: 'audiences', match: 'audiences' },
+      { id: 'services', match: 'audiences' },
+      { id: 'contact', match: 'contact' },
+    ]
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const line = window.scrollY + 160
+      let current = 'about'
+      for (const marker of markers) {
+        const node = document.getElementById(marker.id)
+        if (!node) continue
+        const top = node.getBoundingClientRect().top + window.scrollY
+        if (top <= line) current = marker.match
+      }
+      setSection(current)
+    }
+    const onScroll = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [pathname])
+
+  const active = pathname.startsWith('/projects') ? 'projects' : pathname === '/' ? section : ''
+
   return (
-    <div className="mobile-bar">
-      <a href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
-        <TelegramIcon size={18} />
-        Telegram
-      </a>
-      <a href={buildContactLink('whatsapp')} target="_blank" rel="noopener noreferrer">
-        <WhatsAppIcon size={18} />
-        WhatsApp
-      </a>
-    </div>
+    <nav className="app-tabbar" aria-label="Разделы сайта">
+      {tabs.map((tab) => {
+        const Icon = tab.icon
+        const isActive = active === tab.match
+        return (
+          <a key={tab.href} href={tab.href} className={isActive ? 'is-active' : ''} aria-current={isActive ? 'page' : undefined}>
+            <Icon size={20} aria-hidden />
+            <span>{tab.label}</span>
+          </a>
+        )
+      })}
+    </nav>
   )
 }
 
