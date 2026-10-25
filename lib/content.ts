@@ -4,7 +4,7 @@ export const site = {
   telegram: 'sheikhkitten',
   channel: 'gwencode',
   whatsapp: '79635947163',
-  phone: '+7 963 594-71-63',
+  phone: '+7 (963) 594-71-63',
   hours: 'круглосуточно',
   responseTime: 'дня',
   workHours: 'с 9:00 до 18:00',

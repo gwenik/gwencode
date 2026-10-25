@@ -28,10 +28,6 @@ export function LegalDoc({
         ))}
       </nav>
       <article className="legal-body">{children}</article>
-      <p className="legal-note">
-        Документ носит информационный характер и может быть уточнён под ваши реквизиты (ИНН, ОГРН, адрес, e-mail). При
-        необходимости согласуйте финальную редакцию с юристом.
-      </p>
     </main>
   )
 }

@@ -1,21 +1,23 @@
 import { site } from '@/lib/content'
 
-/** Юр. данные оператора — поправь под свои реквизиты перед продом */
+/** Юр. данные оператора и правообладателя бренда */
 export const legal = {
   brand: site.name,
   siteUrl: site.url,
-  /** Оператор ПДн / владелец сайта */
   operatorName: 'ООО «ПАРТНЕР»',
   operatorShort: 'ООО «ПАРТНЕР» (бренд gwencode)',
-  inn: '{{ИНН}}',
-  ogrn: '{{ОГРН}}',
-  legalAddress: '{{ЮРИДИЧЕСКИЙ_АДРЕС}}, г. Грозный, Чеченская Республика, РФ',
-  /** Почта для запросов по 152-ФЗ — лучше завести отдельный ящик */
-  privacyEmail: '',
+  inn: '2014015498',
+  kpp: '201401001',
+  ogrn: '1172036002940',
+  legalAddress: '364060, Чеченская Республика, город Грозный, ул. У.А.Садаева, д. 19, офис 2',
+  privacyEmail: 'g-companyit@mail.ru',
+  contactEmail: 'g-companyit@mail.ru',
+  contactPhone: '+7 (963) 594-71-63',
+  contactPhoneTel: 'tel:+79635947163',
   contactTelegram: `@${site.telegram}`,
-  contactPhone: site.phone,
-  /** Дата актуальной редакции документов */
-  docsUpdated: '21.10.2026',
+  workHours: 'Пн–Пт 9:00–18:00',
+  sinceYear: '2017',
+  docsUpdated: '25.10.2026',
   city: site.city,
   region: site.region,
 }
@@ -35,6 +37,5 @@ export type CookieConsentState = {
 }
 
 export function contactForPrivacy() {
-  if (legal.privacyEmail) return legal.privacyEmail
-  return `Telegram ${legal.contactTelegram} или WhatsApp ${legal.contactPhone}`
+  return legal.privacyEmail || `Telegram ${legal.contactTelegram} или телефон ${legal.contactPhone}`
 }

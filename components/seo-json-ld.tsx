@@ -1,4 +1,5 @@
 import { site } from '@/lib/content'
+import { legal } from '@/lib/legal'
 
 export function SeoJsonLd() {
   const org = {
@@ -6,15 +7,19 @@ export function SeoJsonLd() {
     '@type': ['Organization', 'ProfessionalService', 'LocalBusiness'],
     '@id': `${site.url}/#organization`,
     name: site.name,
-    legalName: 'gwencode',
+    legalName: legal.operatorName,
     url: site.url,
     logo: `${site.url}/icon-512.png`,
     image: `${site.url}/icon-512.png`,
     description:
       'IT-компания и команда разработчиков в Грозном: сайты, Telegram-боты, мобильные приложения, интернет-магазины и системы учёта для бизнеса по Чечне и всей России.',
-    telephone: site.phone,
+    telephone: legal.contactPhone,
+    email: legal.contactEmail,
+    taxID: legal.inn,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'ул. У.А.Садаева, д. 19, офис 2',
+      postalCode: '364060',
       addressLocality: site.city,
       addressRegion: site.region,
       addressCountry: 'RU',
@@ -30,7 +35,7 @@ export function SeoJsonLd() {
         '@type': 'ContactPoint',
         contactType: 'sales',
         availableLanguage: ['Russian'],
-        telephone: site.phone,
+        telephone: legal.contactPhone,
         url: `https://t.me/${site.telegram}`,
       },
     ],

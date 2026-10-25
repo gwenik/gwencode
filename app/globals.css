@@ -1833,14 +1833,6 @@ footer {
   padding: 1px 6px;
   border-radius: 6px;
 }
-.legal-note {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  font-size: 13px;
-  color: var(--slate);
-}
-
 /* ——— Cookie banner ——— */
 .cookie-banner {
   position: fixed;
