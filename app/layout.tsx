@@ -114,9 +114,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <SeoJsonLd />
-        <a className="skip" href="#content">
-          К содержанию
-        </a>
         <SiteHeader />
         <div id="content">{children}</div>
         <SiteFooter />

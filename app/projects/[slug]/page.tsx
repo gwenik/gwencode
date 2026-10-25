@@ -1,9 +1,30 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Check, ExternalLink } from 'lucide-react'
-import { ProjectCover, ProjectShot } from '@/components/project-cover'
+import { ProjectCover } from '@/components/project-cover'
+import { ProjectGallery, type GalleryShot } from '@/components/project-gallery'
 import { ContactButton } from '@/components/site-chrome'
-import { projects } from '@/lib/content'
+import { projects, type Project } from '@/lib/content'
+
+/** Только кадры этого проекта — чужие скрины сюда не тащим */
+function projectShots(project: Project): GalleryShot[] {
+  const shots: GalleryShot[] = []
+  if ('screenshot' in project && project.screenshot) {
+    shots.push({
+      src: project.screenshot,
+      alt: `Скриншот сайта ${project.title}`,
+      label: project.title,
+    })
+  }
+  if ('logo' in project && project.logo && !('screenshot' in project && project.screenshot)) {
+    shots.push({
+      src: project.logo,
+      alt: `Логотип ${project.title}`,
+      label: project.title,
+    })
+  }
+  return shots
+}
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }))
@@ -37,7 +58,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const prev = projects[(index - 1 + projects.length) % projects.length]
   const next = projects[(index + 1) % projects.length]
   const message = `Здравствуйте! Интересует проект, похожий на ${project.title}.`
-  const screenshot = 'screenshot' in project ? project.screenshot : undefined
+  const shots = projectShots(project)
 
   return (
     <main className="project-detail container">
@@ -101,23 +122,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
           <p className="eyebrow" style={{ marginTop: 48 }}>Скриншоты</p>
           <h2>Как это выглядит</h2>
-          {screenshot ? (
-            <a
-              className="shot-full"
-              href={screenshot}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Открыть скриншот ${project.title} в полном размере`}
-            >
-              <ProjectShot src={screenshot} title={project.title} />
-            </a>
-          ) : (
-            <div className="screenshots">
-              <div className="shot-stub">Скриншот скоро</div>
-              <div className="shot-stub">Скриншот скоро</div>
-              <div className="shot-stub">Скриншот скоро</div>
-            </div>
-          )}
+          <ProjectGallery shots={shots} />
         </article>
 
         <aside>

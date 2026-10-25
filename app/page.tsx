@@ -17,6 +17,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react'
+import { OfferArc } from '@/components/offer-arc'
 import { ProjectCover } from '@/components/project-cover'
 import { ContactButton, TelegramIcon, WhatsAppIcon } from '@/components/site-chrome'
 import {
@@ -443,17 +444,7 @@ export default function Page() {
       <AudienceSection />
 
       <section id="services" className="section container services-section">
-        <svg className="offer-arc" viewBox="0 0 170 240" aria-hidden="true">
-          <defs>
-            <path id="offer-arc-path" d="M6 28 Q 152 16 160 228" />
-          </defs>
-          <text>
-            <textPath href="#offer-arc-path" xlinkHref="#offer-arc-path">
-              50+ проектов · с 2018 · ВайСклад · 100 человек · 50+ проектов · с 2018 · ВайСклад · 100 человек ·
-              <animate attributeName="startOffset" from="0%" to="-100%" dur="14s" repeatCount="indefinite" />
-            </textPath>
-          </text>
-        </svg>
+        <OfferArc />
         <div className="section-intro services-intro">
           <div>
             <p className="eyebrow">Что можем сделать</p>
