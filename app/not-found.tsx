@@ -16,7 +16,7 @@ export default function NotFound() {
           На главную
         </a>
         <a className="button button-secondary" href="/projects/">
-          Проекты
+          Заказы
         </a>
       </div>
     </main>

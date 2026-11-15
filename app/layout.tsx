@@ -5,9 +5,9 @@ import { SeoJsonLd } from '@/components/seo-json-ld'
 import { site } from '@/lib/content'
 import './globals.css'
 
-const titleDefault = 'IT-компания в Грозном — сайты, боты, приложения | GwenCode'
+const titleDefault = 'IT-компания в Грозном — сайты, боты, учёт | GwenCode'
 const description =
-  'IT-команда GwenCode в Грозном: разработка сайтов, Telegram-ботов, мобильных приложений, интернет-магазинов и систем учёта. Работаем по Чечне и всей России. Консультация и аудит — бесплатно.'
+  'GwenCode — IT в Грозном: сайты, Telegram-боты, магазины и учёт для бизнеса. Переводим работу из тетрадок в телефон. Чечня и вся Россия. Консультация бесплатно.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: titleDefault,
     description,
     images: ['/icon-512.png'],

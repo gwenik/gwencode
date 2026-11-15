@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <div className="breadcrumbs">
         <a href="/">Главная</a>
         <span aria-hidden>/</span>
-        <a href="/projects/">Проекты</a>
+        <a href="/projects/">Заказы</a>
         <span aria-hidden>/</span>
         <b>{project.title}</b>
       </div>

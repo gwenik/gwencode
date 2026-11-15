@@ -9,13 +9,14 @@ import { legalNav } from '@/lib/legal'
 const nav = [
   { href: '/#about', label: 'Кто мы' },
   { href: '/#audiences', label: 'Что решаем' },
-  { href: '/projects/', label: 'Проекты' },
-  { href: '/#contact', label: 'Связаться' },
-]
+  { href: '/projects/', label: 'Заказы' },
+  { href: '/#contact', label: 'Контакты' },
+  { href: '/products/', label: 'Наши продукты', paddle: true },
+] as const
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number }
 
-/** Фирменные силуэты на currentColor — без синего/зелёного бренда, под палитру сайта */
+/** Оригинальный логотип Telegram (цвет — currentColor) */
 export function TelegramIcon({ size = 18, ...props }: IconProps) {
   return (
     <svg
@@ -26,11 +27,12 @@ export function TelegramIcon({ size = 18, ...props }: IconProps) {
       aria-hidden="true"
       {...props}
     >
-      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 6.75-1.48 7c-.1.47-.4.58-.8.36l-2.22-1.64-1.07 1.03c-.12.12-.22.22-.45.22l.16-2.27 4.14-3.74c.18-.16-.04-.25-.28-.09l-5.12 3.22-2.2-.69c-.48-.15-.49-.48.1-.71l8.6-3.31c.4-.15.75.1.72.58Z" />
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
     </svg>
   )
 }
 
+/** Оригинальный логотип WhatsApp (цвет — currentColor) */
 export function WhatsAppIcon({ size = 18, ...props }: IconProps) {
   return (
     <svg
@@ -41,7 +43,7 @@ export function WhatsAppIcon({ size = 18, ...props }: IconProps) {
       aria-hidden="true"
       {...props}
     >
-      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.46 3.47 1.34 4.98L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.23h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.53 3.69-8.21 8.23-8.21 4.53 0 8.21 3.68 8.21 8.21 0 4.54-3.68 8.24-8.2 8.24Zm4.52-6.15c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.17.21-.58.21-1.07.14-1.17-.06-.11-.22-.17-.47-.29Z" />
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
     </svg>
   )
 }
@@ -52,9 +54,10 @@ export function Logo() {
       <img
         className="logo-img"
         src="/logo-lockup.png"
+        srcSet="/logo-lockup.png 1x, /logo-lockup@2x.png 2x, /logo-lockup@3x.png 3x"
         alt="GwenCode"
-        width={474}
-        height={72}
+        width={174}
+        height={40}
         decoding="async"
       />
     </a>
@@ -62,16 +65,36 @@ export function Logo() {
 }
 
 export function SiteHeader() {
+  const pathname = usePathname()
+
   return (
     <header className="site-header">
       <div className="container nav-wrap">
         <Logo />
         <nav aria-label="Главная навигация">
-          {nav.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
+          {nav.map((item) => {
+            const isActive =
+              item.href === '/products/'
+                ? pathname.startsWith('/products')
+                : item.href === '/projects/'
+                  ? pathname.startsWith('/projects')
+                  : false
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className={[
+                  'paddle' in item && item.paddle ? 'nav-paddle' : '',
+                  isActive ? 'is-active' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            )
+          })}
         </nav>
         <div className="header-tg">
           <span className="tg-nudge" aria-hidden="true">
@@ -124,8 +147,8 @@ export function SiteFooter() {
 const tabs = [
   { href: '/#about', match: 'about', label: 'Кто мы', icon: Users },
   { href: '/#audiences', match: 'audiences', label: 'Что решаем', icon: Sparkles },
-  { href: '/#contact', match: 'contact', label: 'Связаться', icon: MessageCircle },
-  { href: '/projects/', match: 'projects', label: 'Проекты', icon: FolderKanban },
+  { href: '/#contact', match: 'contact', label: 'Контакты', icon: MessageCircle },
+  { href: '/projects/', match: 'projects', label: 'Заказы', icon: FolderKanban },
 ] as const
 
 export function MobileBar() {
@@ -167,7 +190,13 @@ export function MobileBar() {
     }
   }, [pathname])
 
-  const active = pathname.startsWith('/projects') ? 'projects' : pathname === '/' ? section : ''
+  const active = pathname.startsWith('/projects')
+    ? 'projects'
+    : pathname.startsWith('/products')
+      ? 'products'
+      : pathname === '/'
+        ? section
+        : ''
 
   return (
     <nav className="app-tabbar" aria-label="Разделы сайта">

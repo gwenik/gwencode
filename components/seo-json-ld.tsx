@@ -1,4 +1,4 @@
-import { site } from '@/lib/content'
+import { faq, site } from '@/lib/content'
 import { legal } from '@/lib/legal'
 
 export function SeoJsonLd() {
@@ -12,7 +12,7 @@ export function SeoJsonLd() {
     logo: `${site.url}/icon-512.png`,
     image: `${site.url}/icon-512.png`,
     description:
-      'IT-компания и команда разработчиков в Грозном: сайты, Telegram-боты, мобильные приложения, интернет-магазины и системы учёта для бизнеса по Чечне и всей России.',
+      'GwenCode — IT-компания в Грозном: сайты, Telegram-боты, интернет-магазины, приложения и учёт для бизнеса. Работаем по Чечне и всей России. Консультация бесплатно.',
     telephone: legal.contactPhone,
     email: legal.contactEmail,
     taxID: legal.inn,
@@ -66,7 +66,7 @@ export function SeoJsonLd() {
   const services = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Услуги gwencode',
+    name: 'Услуги GwenCode',
     itemListElement: [
       'Разработка сайтов в Грозном',
       'Telegram и WhatsApp боты',
@@ -81,11 +81,25 @@ export function SeoJsonLd() {
     })),
   }
 
+  const faqPage = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(org) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(services) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }} />
     </>
   )
 }

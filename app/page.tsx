@@ -28,15 +28,17 @@ import {
   marqueeItems,
   processSteps,
   projects,
+  reasons,
   services,
   site,
+  testimonials,
 } from '@/lib/content'
 
 const icons = [Bot, Globe2, ShoppingBag, Smartphone, Database, Rocket]
 const steps = [
   { href: '/#about', label: 'Кто мы' },
   { href: '/#audiences', label: 'Что решаем' },
-  { href: '/#contact', label: 'Связаться' },
+  { href: '/#contact', label: 'Контакты' },
 ]
 
 function PhoneMockup() {
@@ -160,29 +162,38 @@ function PhoneMockup() {
   )
 }
 
-function Roadmap() {
+function StepRail() {
   const [active, setActive] = useState(0)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const markers = [
       { id: 'about', step: 0 },
       { id: 'audiences', step: 1 },
-      { id: 'services', step: 1 },
       { id: 'contact', step: 2 },
     ]
     let frame = 0
 
     const update = () => {
       frame = 0
-      const line = window.scrollY + 120
+      const y = window.scrollY
+      const line = y + Math.min(window.innerHeight * 0.35, 180)
+
+      // Только в секциях шагов — не поверх FAQ / process / services
+      let inZone = false
       let step = 0
       for (const marker of markers) {
         const node = document.getElementById(marker.id)
         if (!node) continue
-        const top = node.getBoundingClientRect().top + window.scrollY
+        const rect = node.getBoundingClientRect()
+        const top = rect.top + y
         if (top <= line) step = marker.step
+        if (rect.top < window.innerHeight * 0.55 && rect.bottom > 140) {
+          inZone = true
+        }
       }
       setActive(step)
+      setVisible(inZone)
     }
 
     const onScroll = () => {
@@ -201,18 +212,20 @@ function Roadmap() {
   }, [])
 
   return (
-    <div className="roadmap-wrap container">
-      <p className="eyebrow">Три шага, чтобы понять, подходим ли мы вам</p>
-      <div className="roadmap">
-        <div className="roadmap-line" />
-        {steps.map((step, index) => (
-          <a className={active === index ? 'road-stop active' : 'road-stop'} href={step.href} key={step.href}>
-            <span>{index + 1}</span>
-            <b>{step.label}</b>
-          </a>
-        ))}
-      </div>
-    </div>
+    <nav className={visible ? 'step-rail is-visible' : 'step-rail'} aria-label="Три шага на странице">
+      <div className="step-rail-track" aria-hidden="true" />
+      {steps.map((step, index) => (
+        <a
+          key={step.href}
+          href={step.href}
+          className={active === index ? 'step-rail-item is-active' : 'step-rail-item'}
+          aria-current={active === index ? 'step' : undefined}
+        >
+          <span className="step-rail-label">{step.label}</span>
+          <span className="step-rail-dot">{index + 1}</span>
+        </a>
+      ))}
+    </nav>
   )
 }
 
@@ -259,7 +272,7 @@ function AudienceSection() {
             {audience.services.map((item) => <b key={item}>{item}</b>)}
           </div>
           <ContactButton channel="telegram" message={audience.message}>
-            Это про меня — обсудить
+            Это про меня — обсудить бесплатно
           </ContactButton>
         </div>
       </div>
@@ -272,27 +285,27 @@ function ContactSection() {
     <section id="contact" className="contact-section">
       <div className="container contact-inner">
         <div>
-          <p className="eyebrow">Шаг 3 · Связаться</p>
-          <h2>Напишите нам — как вам удобно</h2>
-          <p>Без форм. Напишите задачу своими словами — вопросы зададим сами.</p>
+          <p className="eyebrow">Шаг 3 · Контакты</p>
+          <h2>Напишите задачу — разберём бесплатно</h2>
+          <p>Без анкет и долгих форм. Опишите, что ломается или чего не хватает — уточним и предложим план.</p>
           <p className="contact-note">
-            Консультация и аудит вашей компании — <em>бесплатно</em>.
+            Консультация и аудит — <em>бесплатно</em>, цену назовём до договора.
           </p>
         </div>
         <div className="contact-cards contact-cards-simple">
           <a className="contact-card primary" href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
-            <span className="contact-icon" aria-hidden>
-              <TelegramIcon size={22} />
+            <span className="contact-icon contact-icon-telegram" aria-hidden>
+              <TelegramIcon size={30} />
             </span>
             <div>
-              <b>Написать в Telegram</b>
-              <span>@{site.telegram}</span>
+              <b>Обсудить в Telegram</b>
+              <span>@{site.telegram} · обычно в течение дня</span>
             </div>
             <ArrowRight aria-hidden />
           </a>
           <a className="contact-card" href={buildContactLink('whatsapp')} target="_blank" rel="noopener noreferrer">
-            <span className="contact-icon" aria-hidden>
-              <WhatsAppIcon size={22} />
+            <span className="contact-icon contact-icon-whatsapp" aria-hidden>
+              <WhatsAppIcon size={30} />
             </span>
             <div>
               <b>Написать в WhatsApp</b>
@@ -325,10 +338,11 @@ export default function Page() {
             <span>из тетрадки</span> в телефон
           </h1>
           <p className="hero-lead">
-            Сайты, боты, приложения и учёт. Говорим просто, цену называем под задачу.
+            GwenCode — IT в Грозном для бизнеса, который устал считать в тетрадях и ловить заявки по чатам.
+            Сайты, боты, магазины и учёт: разбираем задачу и называем цену до договора.
           </p>
           <div className="hero-cta">
-            <ContactButton>Написать в Telegram</ContactButton>
+            <ContactButton>Обсудить задачу бесплатно</ContactButton>
             <div className="hero-cta-side">
               <ContactButton channel="whatsapp" className="button button-secondary">
                 Написать в WhatsApp
@@ -365,15 +379,15 @@ export default function Page() {
         </div>
       </div>
 
-      <Roadmap />
+      <StepRail />
 
       <section id="about" className="section container">
         <div className="about-head">
           <p className="eyebrow">Шаг 1 · Кто мы</p>
-          <h2>Запускаем проекты и свои продукты</h2>
+          <h2>Создаём не только свои — но и ваши продукты</h2>
           <p className="about-lead">
-            Мы амбициозная команда разработчиков с огромным багажом знаний, языков программирования
-            и желанием цифровизировать ваш бизнес. Но мы также не забываем и про свои проекты.
+            Разработчики в IT с 2018 года: сайты, боты, магазины и учёт для бизнеса в Грозном и по России.
+            Параллельно ведём свой продукт — ВайСклад, им уже пользуются магазины.
           </p>
         </div>
         <div className="about-board">
@@ -387,10 +401,10 @@ export default function Page() {
             <strong>100 реальных пользователей</strong>
             <p>
               У{' '}
-              <a href="https://waysklad.gwensoft.ru" target="_blank" rel="noopener noreferrer">
+              <a href="https://waysklad.gwencode.ru" target="_blank" rel="noopener noreferrer">
                 ВайСклада
               </a>{' '}
-              — продукт учёта для малого бизнеса.
+              — учёт товаров, продаж и долгов с телефона.
             </p>
           </article>
           <a className="about-card about-card-accent" href="/#contact">
@@ -418,10 +432,13 @@ export default function Page() {
           })}
         </div>
         <div className="projects-preview">
-          <div className="section-label">
-            <span>Наши проекты</span>
+          <div className="section-label projects-preview-head">
+            <span>Заказы</span>
+            <span className="label-line" />
             <a className="projects-all" href="/projects/">
-              Смотреть все проекты ({projects.length}) <ArrowRight size={16} aria-hidden />
+              Все
+              <span className="projects-all-count">{projects.length}</span>
+              <ArrowRight size={15} aria-hidden />
             </a>
           </div>
           <div className="project-mini-grid">
@@ -433,11 +450,26 @@ export default function Page() {
               </a>
             ))}
           </div>
+          <a className="projects-all-mobile" href="/projects/">
+            Смотреть все заказы
+            <ArrowRight size={16} aria-hidden />
+          </a>
+        </div>
+        <div className="reasons-grid" aria-label="Почему GwenCode">
+          {reasons.map((item) => (
+            <article className="reason-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
         <div className="help-row about-next">
           <a className="button button-secondary" href="/#audiences">
-            Следующий шаг: что решаем <ArrowRight size={18} aria-hidden />
+            Узнать, какую боль закрываем <ArrowRight size={18} aria-hidden />
           </a>
+          <ContactButton channel="telegram" className="button button-primary">
+            Обсудить задачу бесплатно
+          </ContactButton>
         </div>
       </section>
 
@@ -448,8 +480,11 @@ export default function Page() {
         <div className="section-intro services-intro">
           <div>
             <p className="eyebrow">Что можем сделать</p>
-            <h2>Соберём решение под вашу задачу</h2>
-            <p>Цену называем после разговора. Консультация бесплатная.</p>
+            <h2>Не «всё подряд» — решение под вашу боль</h2>
+            <p>
+              Срок и цену называем после короткого разговора. Консультация бесплатная —
+              платите только когда понятно, что получите.
+            </p>
           </div>
         </div>
         <div className="services-grid">
@@ -531,11 +566,14 @@ export default function Page() {
                     <span>Срок {service.duration}</span>
                   </div>
                   <a
-                    href={buildContactLink('telegram', `Здравствуйте! Интересует: ${service.title}.`)}
+                    href={buildContactLink(
+                      'telegram',
+                      `Здравствуйте! Интересует: ${service.title}. Хочу понять срок и цену.`,
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Обсудить <ArrowRight size={16} aria-hidden />
+                    Узнать срок и цену <ArrowRight size={16} aria-hidden />
                   </a>
                 </div>
               </article>
@@ -548,9 +586,9 @@ export default function Page() {
         <div className="section-intro">
           <div>
             <p className="eyebrow">Как мы работаем</p>
-            <h2>От первого сообщения до работающего проекта</h2>
+            <h2>От сообщения до запуска — без сюрпризов в счёте</h2>
           </div>
-          <p>Сначала задача, потом план. Без сюрпризов в счёте.</p>
+          <p>Сначала задача и понятный план. Потом договор с ценой и сроком. Потом работа.</p>
         </div>
         <div className="process-grid">
           {processSteps.map((step, index) => (
@@ -566,10 +604,60 @@ export default function Page() {
         </div>
       </section>
 
+      {testimonials.length > 0 ? (
+        <section className="section container reviews" id="reviews" aria-labelledby="reviews-title">
+          <div className="section-intro">
+            <div>
+              <p className="eyebrow">Отзывы клиентов</p>
+              <h2 id="reviews-title">Не мы себя хвалим — говорят те, с кем уже работали</h2>
+            </div>
+            <p>Реальные формулировки клиентов. Скрины — там, где их можно показать.</p>
+          </div>
+          <div className="reviews-grid">
+            {testimonials.map((item) => (
+              <figure className="review-card" key={`${item.name}-${item.quote.slice(0, 24)}`}>
+                {item.screenshot ? (
+                  <a
+                    className="review-shot"
+                    href={item.screenshot}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={item.screenshot} alt={`Скрин отзыва: ${item.name}`} loading="lazy" />
+                  </a>
+                ) : null}
+                <blockquote>
+                  <p>{item.quote}</p>
+                </blockquote>
+                <figcaption>
+                  {item.photo ? (
+                    <img className="review-avatar" src={item.photo} alt="" width={44} height={44} />
+                  ) : (
+                    <span className="review-avatar review-avatar-fallback" aria-hidden>
+                      {item.name.slice(0, 1)}
+                    </span>
+                  )}
+                  <div>
+                    <strong>{item.name}</strong>
+                    <span>
+                      {item.role}
+                      {item.company ? ` · ${item.company}` : ''}
+                    </span>
+                    {item.project ? (
+                      <a href={`/projects/${item.project}/`}>Смотреть заказ</a>
+                    ) : null}
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="section container faq-wrap">
         <div className="faq">
           <p className="eyebrow">Коротко о главном</p>
-          <h2>Ответы на частые вопросы</h2>
+          <h2>Ответы на вопросы до того, как вы напишете</h2>
           {faq.map((item, index) => (
             <details className="faq-item" key={item.q} open={index === 0}>
               <summary>
@@ -582,10 +670,10 @@ export default function Page() {
         </div>
         <aside className="cta-card">
           <Sparkles aria-hidden />
-          <h3>Есть задача, но не знаете, с чего начать?</h3>
-          <p>Напишите в Telegram — подскажем первый шаг.</p>
-          <a className="button button-primary" href="/#contact">
-            К контактам <ArrowRight size={18} aria-hidden />
+          <h3>Есть задача — и не хотите гадать с ценой?</h3>
+          <p>Напишите в Telegram: разберём, что нужно, и скажем срок с суммой до договора.</p>
+          <a className="button button-primary" href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
+            Обсудить задачу бесплатно <ArrowRight size={18} aria-hidden />
           </a>
         </aside>
       </section>
