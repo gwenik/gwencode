@@ -5,21 +5,21 @@ import { SeoJsonLd } from '@/components/seo-json-ld'
 import { site } from '@/lib/content'
 import './globals.css'
 
-const titleDefault = 'IT-компания в Грозном — сайты, боты, приложения | gwencode'
+const titleDefault = 'IT-компания в Грозном — сайты, боты, приложения | GwenCode'
 const description =
-  'IT-команда gwencode в Грозном: разработка сайтов, Telegram-ботов, мобильных приложений, интернет-магазинов и систем учёта. Работаем по Чечне и всей России. Консультация и аудит — бесплатно.'
+  'IT-команда GwenCode в Грозном: разработка сайтов, Telegram-ботов, мобильных приложений, интернет-магазинов и систем учёта. Работаем по Чечне и всей России. Консультация и аудит — бесплатно.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: titleDefault,
-    template: '%s — gwencode',
+    template: '%s — GwenCode',
   },
   description,
-  applicationName: 'gwencode',
-  authors: [{ name: 'gwencode', url: site.url }],
-  creator: 'gwencode',
-  publisher: 'gwencode',
+  applicationName: 'GwenCode',
+  authors: [{ name: 'GwenCode', url: site.url }],
+  creator: 'GwenCode',
+  publisher: 'GwenCode',
   category: 'technology',
   keywords: [
     'IT компания Грозный',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     url: site.url,
-    siteName: 'gwencode',
+    siteName: 'GwenCode',
     title: titleDefault,
     description,
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: '/icon-512.png',
         width: 512,
         height: 512,
-        alt: 'gwencode — IT-компания в Грозном',
+        alt: 'GwenCode — IT-компания в Грозном',
       },
     ],
   },
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   other: {
     'format-detection': 'telephone=yes',
     'yandex-tableau-widget': JSON.stringify({
-      color: '#d2f26a',
+      color: '#c1ea06',
       logo: 'icon-192.png',
     }),
   },

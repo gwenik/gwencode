@@ -318,7 +318,7 @@ export default function Page() {
     <main>
       <section className="hero container">
         <div className="hero-copy">
-          <p className="eyebrow">IT-компания в Грозном · gwencode</p>
+          <p className="eyebrow">IT-компания в Грозном · GwenCode</p>
           <h1>
             Переводим бизнес
             <br />

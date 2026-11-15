@@ -13,7 +13,7 @@
   --line: #c8d3d5;
   --powder: #a4b8c4;
   --slate: #6e8387;
-  --green: #d2f26a;
+  --green: #c1ea06;
   --green-dark: #b8d76f;
   --green-deep: #8fb04a;
   --green-pale: #f4f9e8;
@@ -69,21 +69,17 @@ summary:focus-visible {
 .site-header { border-bottom-color: var(--line); }
 .nav-wrap { height: 100%; display: flex; align-items: center; gap: 32px; }
 .logo {
-  font-family: var(--display);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -1.4px;
   display: inline-flex;
   align-items: center;
-  color: var(--ink);
+  flex-shrink: 0;
+  line-height: 0;
 }
-.logo span { color: var(--slate); font-weight: 700; }
-.logo i {
-  width: 7px;
-  height: 7px;
-  background: var(--green);
-  border-radius: 99px;
-  margin: 0 0 16px 4px;
+.logo-img {
+  display: block;
+  height: 36px;
+  width: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 .nav-wrap nav {
   display: flex;
@@ -2461,6 +2457,7 @@ body.lightbox-open { overflow: hidden; }
     margin-left: auto;
     margin-right: 4px;
   }
+  .logo-img { height: 30px; }
   .roadmap-wrap { display: none; }
   #about,
   #audiences,

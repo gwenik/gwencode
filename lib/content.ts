@@ -1,5 +1,5 @@
 export const site = {
-  name: 'gwencode',
+  name: 'GwenCode',
   url: 'https://gwencode.ru',
   telegram: 'sheikhkitten',
   channel: 'gwencode',
@@ -30,7 +30,7 @@ export const site = {
 /** Слаги проектов на главной — строго в этом порядке */
 export const homeProjectSlugs = ['satiysar-edu', 'yumlai', 'tidam'] as const
 
-export const defaultMessage = 'Здравствуйте! Пишу с сайта gwencode.'
+export const defaultMessage = 'Здравствуйте! Пишу с сайта GwenCode.'
 
 export type ContactChannel = 'telegram' | 'whatsapp' | 'phone' | 'channel'
 

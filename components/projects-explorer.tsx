@@ -39,7 +39,7 @@ export function ProjectsExplorer() {
 
   return (
     <main className="projects-page container">
-      <p className="eyebrow">Портфолио gwencode</p>
+      <p className="eyebrow">Портфолио GwenCode</p>
       <h1>Наши проекты</h1>
       <p className="projects-lead">
         Магазины, доставка, системы учёта и сайты. Нажмите на проект — расскажем, что сделали и сколько это заняло.
