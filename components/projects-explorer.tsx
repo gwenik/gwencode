@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { ProjectCover } from '@/components/project-cover'
-import { ContactButton } from '@/components/site-chrome'
 import { projects } from '@/lib/content'
 
 export function ProjectsExplorer() {
@@ -95,7 +94,9 @@ export function ProjectsExplorer() {
           <p className="eyebrow">Похожий проект?</p>
           <h2>Расскажите, что нужно вашему бизнесу</h2>
         </div>
-        <ContactButton>Написать в Telegram</ContactButton>
+        <a className="button button-primary" href="/#contact">
+          К контактам
+        </a>
       </section>
     </main>
   )

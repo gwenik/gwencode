@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import { ProjectCover } from '@/components/project-cover'
-import { ContactButton } from '@/components/site-chrome'
 import { ownProducts, projects, site, type OwnProduct } from '@/lib/content'
 
 export const metadata: Metadata = {
@@ -115,11 +114,13 @@ export default function ProductsPage() {
           <p className="eyebrow">Нужен свой продукт?</p>
           <h2>Соберём решение под ваш бизнес — или подскажем, хватит ли готового</h2>
           <p>
-            Напишите в Telegram: разберём задачу и скажем, что быстрее — наш продукт или заказ
-            с нуля. {site.city} и вся Россия.
+            Напишите в Telegram или найдите контакты внизу страницы — разберём, что быстрее: наш
+            продукт или заказ с нуля. {site.city} и вся Россия.
           </p>
         </div>
-        <ContactButton>Написать в Telegram</ContactButton>
+        <a className="button button-secondary" href="/#contact">
+          К контактам
+        </a>
       </section>
     </main>
   )

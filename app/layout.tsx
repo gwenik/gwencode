@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { AnalyticsLoader, CookieConsent } from '@/components/cookie-consent'
 import { MobileBar, SiteFooter, SiteHeader } from '@/components/site-chrome'
 import { SeoJsonLd } from '@/components/seo-json-ld'
+import { StepRail } from '@/components/step-rail'
 import { site } from '@/lib/content'
 import './globals.css'
 
@@ -101,6 +102,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
+  viewportFit: 'cover' as const,
   colorScheme: 'light' as const,
   themeColor: '#fcfafa',
 }
@@ -117,6 +119,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         <div id="content">{children}</div>
         <SiteFooter />
+        <StepRail />
         <MobileBar />
         <CookieConsent />
         <AnalyticsLoader />

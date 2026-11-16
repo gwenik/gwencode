@@ -1,17 +1,15 @@
 'use client'
 
-import { useEffect, useState, type SVGProps } from 'react'
+import { type SVGProps } from 'react'
 import { usePathname } from 'next/navigation'
-import { FolderKanban, MessageCircle, Phone, Sparkles, Users } from 'lucide-react'
+import { FolderKanban, Home, Package, Phone, Users } from 'lucide-react'
 import { buildContactLink, site } from '@/lib/content'
 import { legalNav } from '@/lib/legal'
 
 const nav = [
-  { href: '/#about', label: 'Кто мы' },
-  { href: '/#audiences', label: 'Что решаем' },
+  { href: '/about/', label: 'Кто мы', paddle: true },
   { href: '/projects/', label: 'Заказы' },
-  { href: '/#contact', label: 'Контакты' },
-  { href: '/products/', label: 'Наши продукты', paddle: true },
+  { href: '/products/', label: 'Наши продукты' },
 ] as const
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number }
@@ -78,7 +76,9 @@ export function SiteHeader() {
                 ? pathname.startsWith('/products')
                 : item.href === '/projects/'
                   ? pathname.startsWith('/projects')
-                  : false
+                  : item.href === '/about/'
+                    ? pathname.startsWith('/about')
+                    : false
             return (
               <a
                 key={item.href}
@@ -112,7 +112,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer>
+    <footer id="contact">
       <div className="container footer-inner">
         <div>
           <Logo />
@@ -123,6 +123,7 @@ export function SiteFooter() {
           </p>
         </div>
         <nav className="footer-links" aria-label="Навигация в подвале">
+          <a href="/">Главная</a>
           {nav.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
@@ -130,6 +131,19 @@ export function SiteFooter() {
           ))}
         </nav>
         <div className="footer-contacts">
+          <p className="footer-contacts-title">Связаться</p>
+          <a href={buildContactLink('telegram')} target="_blank" rel="noopener noreferrer">
+            <TelegramIcon size={16} />
+            @{site.telegram}
+          </a>
+          <a href={buildContactLink('whatsapp')} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon size={16} />
+            WhatsApp
+          </a>
+          <a href={buildContactLink('phone')}>
+            <Phone size={16} />
+            {site.phone}
+          </a>
           <nav className="footer-legal" aria-label="Юридические документы">
             {legalNav.map((item) => (
               <a key={item.href} href={item.href}>
@@ -145,58 +159,25 @@ export function SiteFooter() {
 }
 
 const tabs = [
-  { href: '/#about', match: 'about', label: 'Кто мы', icon: Users },
-  { href: '/#audiences', match: 'audiences', label: 'Что решаем', icon: Sparkles },
-  { href: '/#contact', match: 'contact', label: 'Контакты', icon: MessageCircle },
+  { href: '/', match: 'home', label: 'Главная', icon: Home },
+  { href: '/about/', match: 'about', label: 'Кто мы', icon: Users },
   { href: '/projects/', match: 'projects', label: 'Заказы', icon: FolderKanban },
+  { href: '/products/', match: 'products', label: 'Продукты', icon: Package },
 ] as const
 
 export function MobileBar() {
   const pathname = usePathname()
-  const [section, setSection] = useState('about')
 
-  useEffect(() => {
-    if (pathname !== '/') return
-    const markers = [
-      { id: 'about', match: 'about' },
-      { id: 'audiences', match: 'audiences' },
-      { id: 'services', match: 'audiences' },
-      { id: 'contact', match: 'contact' },
-    ]
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const line = window.scrollY + 160
-      let current = 'about'
-      for (const marker of markers) {
-        const node = document.getElementById(marker.id)
-        if (!node) continue
-        const top = node.getBoundingClientRect().top + window.scrollY
-        if (top <= line) current = marker.match
-      }
-      setSection(current)
-    }
-    const onScroll = () => {
-      if (frame) return
-      frame = window.requestAnimationFrame(update)
-    }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (frame) window.cancelAnimationFrame(frame)
-    }
-  }, [pathname])
-
-  const active = pathname.startsWith('/projects')
-    ? 'projects'
-    : pathname.startsWith('/products')
-      ? 'products'
-      : pathname === '/'
-        ? section
-        : ''
+  const active =
+    pathname.startsWith('/projects')
+      ? 'projects'
+      : pathname.startsWith('/products')
+        ? 'products'
+        : pathname.startsWith('/about')
+          ? 'about'
+          : pathname === '/'
+            ? 'home'
+            : ''
 
   return (
     <nav className="app-tabbar" aria-label="Разделы сайта">
@@ -204,8 +185,13 @@ export function MobileBar() {
         const Icon = tab.icon
         const isActive = active === tab.match
         return (
-          <a key={tab.href} href={tab.href} className={isActive ? 'is-active' : ''} aria-current={isActive ? 'page' : undefined}>
-            <Icon size={20} aria-hidden />
+          <a
+            key={tab.href}
+            href={tab.href}
+            className={isActive ? 'is-active' : ''}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            <Icon size={22} aria-hidden />
             <span>{tab.label}</span>
           </a>
         )
